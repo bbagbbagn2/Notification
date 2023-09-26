@@ -10,18 +10,25 @@
   },
   "dependencies": {
     "@prisma/client": "^5.3.0",
+    "@tinymce/tinymce-react": "^4.3.0",
+    "@types/draft-js": "^0.11.12",
+    "@types/express": "^4.17.18",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@types/styled-components": "^5.1.27",
+    "draft-js": "^0.11.7",
     "next": "13.4.19",
     "prisma": "^5.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^6.0.8",
+    "swr": "^2.2.2",
+    "tinymce": "^6.7.0",
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@swc/plugin-styled-components": "^1.5.83",
     "babel-plugin-styled-components": "^2.1.4"
   }
 }

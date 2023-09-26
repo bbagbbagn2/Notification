@@ -1,26 +1,19 @@
-'use client'
+'use client';
 
-import StyledComponentsRegistry from "./lib/registry"
-import GlobalStyles from "@/styles/GlobalStyle"
+import StyledComponentsRegistry from './lib/registry'
+import GlobalStyles from './styles/GlobalStyle';
 
-import Header from "../components/Header";
+import Header from "./components/Header";
+import SearchInput from './components/SearchInput';
 
-export const metadata = {
-  title: 'BlockSmith',
-}
-
-export default function RootLayout({
-  children,
-}:{ 
-  children: React.ReactNode
-}) {
+export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <html lang="en">
-      <body> 
+    <html>
+      <body>
         <StyledComponentsRegistry>
           <GlobalStyles />
           <Header />
-          {children}
+          {props.children}
         </StyledComponentsRegistry>
       </body>
     </html>

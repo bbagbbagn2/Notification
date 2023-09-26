@@ -43,22 +43,19 @@ export default function Header() {
 
 const HeaderLayout = styled.header`
     position: relative;
+    width: 100%;
     height: 56px;
     display: block;
-    z-index: 90;
     background-color: #001E4C;
+    z-index: 90;
 `;
 
 const HeaderCol = styled.div`
-    position: fixed;
     width: 100%;
     height: auto;
-    z-index: 80;
 `;
 
 const HeaderContainer = styled.div`
-    position: relative;
-    z-index: 90;
 `;
 
 const HeaderBox = styled.div`

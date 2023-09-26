@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+import useSWR from 'swr'
 import styled from "styled-components"
+import { Post } from "@prisma/client"
 
-import EmptyContainer from "./components/EmptyContainer"
-import SearchInput from "./components/SearchInput";
+import SearchInput from "../components/SearchInput";
+import EmptyContainer from "../components/EmptyContainer"
 
 function formatPostDate(postDate: string): string{
     const currentDate = new Date();
@@ -30,22 +33,37 @@ function formatPostDate(postDate: string): string{
       const day = String(date.getDate()).padStart(2, "0");
       return `${ year }. ${ month }. ${ day }`;
     }
-  }
+}
 
-async function fetchPosts() {
-    const res = await fetch("http://localhost:3000/api/announcement", {
+async function fetchPosts(url: string) {
+    const res = await fetch(url, {
         next: {
             revalidate: 10,
         },
-    });
-    const data = await res.json();
-    return data.posts;
+    })
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch potsts");
+    }
+
+    return res.json();
 }
 
-export default async function Home() {
-    const posts = await fetchPosts();    
+export default function SearchPage() {
 
-    console.log(posts);
+    const search = useSearchParams();
+    const searchQuery = search ? search.get('q') : null;
+    const endcodedSearchQuery = encodeURI(searchQuery || "");
+
+    const { data, isLoading } = useSWR< {posts: Array<Post>}>(`/api/search?q=${endcodedSearchQuery}`,
+        fetchPosts,
+    );
+
+    if(!data?.posts) {
+        return null;
+    }
+
+    console.log(data);
     return (
         <PageLayout>
             <PageContainer>
@@ -57,22 +75,22 @@ export default async function Home() {
                         <SearchInput />
                     </TitleBox>
                     <Contour />
-                    {posts.length > 0 ? (
-                        <PostContiner>
-                            {posts.reverse().map((post: any) => (
+                    {data.posts.length > 0 ? (
+                    <PostContiner>
+                    {data.posts.reverse().map((post: any) => (
                                 <PostList key={post.id}>
                                     <Link 
                                     href={`/announcement/detail/${post.id}`}
                                     > 
                                     <PostItem>
-                                        <PostHeading>{post.title}</PostHeading>
+                                        <PostHeading>{post.title}</PostHeading> 
                                         <PostDate>{formatPostDate(post.createdAt)}</PostDate>
                                     </PostItem>
                                     </Link>
                                 </PostList>
                             ))
                             }
-                        </PostContiner>
+                    </PostContiner>
                     ) : (
                         <EmptyContainer />
                     )}
