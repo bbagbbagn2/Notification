@@ -5,7 +5,6 @@ import React, { useState, useRef, ChangeEvent, Fragment, useEffect } from "react
 import styled from "styled-components"
 import { useRouter } from "next/navigation";
 import { Editor } from '@tinymce/tinymce-react';
-import { title } from "process";
 
 type UpadateAnnouncementParams = {
   title: string;
@@ -41,7 +40,8 @@ export default function Edit({ params }: { params: { id: number } }) {
   //   autoResizeTextarea();
   // }
   const titleRef = useRef<HTMLTextAreaElement | null>(null);
-  const contentRef = useRef<HTMLTextAreaElement | null>(null);
+  const contentRef = useRef<Editor | null>(null);
+  const [initialContent, setInitialContent] = useState('');
   const tinymcePlugins = ['link', 'lists', 'autoresize'];
   const tinymceToolbar =
     'blocks fontfamily |' +
@@ -54,14 +54,14 @@ export default function Edit({ params }: { params: { id: number } }) {
       .then((data) => {
         if (titleRef.current && contentRef.current) {
           titleRef.current.value = data.title;
+          setInitialContent(data.content);
         }
-        
       })
       .catch((error) => {
         console.error(error);
       })
   }, []);
-
+  
   const autoResizeTextarea = () => {
     const textarea = titleRef.current;
 
@@ -76,7 +76,7 @@ export default function Edit({ params }: { params: { id: number } }) {
     if (titleRef.current && contentRef.current) {
       await updateAnnouncement({
         title: titleRef.current?.value,
-        content: contentRef.current?.value,
+        content: contentRef.current.editor?.getContent() || initialContent,
         id: params.id,
       });
       router.push("/");
@@ -112,7 +112,7 @@ export default function Edit({ params }: { params: { id: number } }) {
               <TitleBoxTextArea
                 rows={1}
                 spellCheck="false"
-                ref={contentRef} />
+               />
             </TitleBox>
             <Editor
               apiKey="68pzucurv0v0a40d8321m0d64yekfzb9mzq31ks3cbqojdur"
@@ -126,6 +126,7 @@ export default function Edit({ params }: { params: { id: number } }) {
                 block_formats: '제목1=h2;제목2=h3;제목3=h4;본문=p;'
               }}
             />
+            <Contour />
             <ButtonBox>
               <CancelButton onClick={handleCancel}>
                 <CancelParapraph>취소</CancelParapraph>
