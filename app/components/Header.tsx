@@ -1,125 +1,89 @@
-import Link from "next/link"
-import styled from "styled-components"
+import Link from "next/link";
+import styled from "styled-components";
 
-import Logo from "./Logo"
+import Logo from "./Logo";
 
 export default function Header() {
-    return (
-        <HeaderLayout>
-            <HeaderCol>
-                <HeaderContainer>
-                    <HeaderBox>
-                        <LeftContainer>
-                            <LogoBox>
-                                <Logo />
-                            </LogoBox>
-                            <HomeBox>
-                                <Link href="/">
-                                    <HomeParagraph>홈</HomeParagraph>
-                                </Link>
-                            </HomeBox>
-                        </LeftContainer>
+  return (
+    <HeaderLayout>
+      <Container>
+        <LeftContainer>
+          <Logo />
+          <Link href="/">
+            <HomeText>홈</HomeText>
+          </Link>
+        </LeftContainer>
 
-                        <RightContainer>
-                            <NotificationBox>
-                                <Link href="/">
-                                    <NotificationParagraph>공지</NotificationParagraph>
-                                </Link>
-                            </NotificationBox>
-                            <AlarmBox>
-                                <AlarmParagraph>알림</AlarmParagraph>
-                                <AlarmBedge />
-                            </AlarmBox>
-                            <UserBox>
-                                <UserParagraph>내 정보</UserParagraph>
-                            </UserBox>
-                        </RightContainer>
-                    </HeaderBox>
-                </HeaderContainer>
-            </HeaderCol>
-        </HeaderLayout>
-    );
+        <RightContainer>
+          <Link href="/">
+            <NotificationText>공지</NotificationText>
+          </Link>
+          <AlarmBox>
+            <Text>알림</Text>
+            <AlarmBedge />
+          </AlarmBox>
+          <Text>내 정보</Text>
+        </RightContainer>
+      </Container>
+    </HeaderLayout>
+  );
 }
 
 const HeaderLayout = styled.header`
-    position: relative;
-    width: 100%;
-    height: 56px;
-    display: block;
-    background-color: #001E4C;
-    z-index: 90;
+  padding-inline: 20px;
+  position: relative;
+  width: 100%;
+  height: 56px;
+  background-color: #001e4c;
+  z-index: 90;
 `;
 
-const HeaderCol = styled.div`
-    width: 100%;
-    height: auto;
-`;
-
-const HeaderContainer = styled.div`
-`;
-
-const HeaderBox = styled.div`
-    margin: 0 auto;
-    padding: 10px 20px;
-    display: grid;
-    grid-template-columns: 259px auto;
-    justify-content: space-between;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const LeftContainer = styled.div`
-    width: 259px;
-    height: 36px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-`;
-
-const LogoBox = styled.div``;
-
-const HomeBox = styled.div`
-    display: grid;
-    justify-content: flex-end;
-`;
-
-const HomeParagraph = styled.p`
-    margin: 0;
-    padding: 0;
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 18px;
+  width: 259px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const RightContainer = styled.div`
-    width: 184px;
-    height: 36px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    place-items: center;
+  width: 184px;
+  display: flex;
+  place-items: center;
+  justify-content: space-between;
 `;
 
-const NotificationBox = styled.div``;
-const NotificationParagraph = styled.p`
-    color: #FFF;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 14px;
+const Text = styled.p`
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+`;
+
+const HomeText = styled(Text)`
+  font-size: 18px;
+  line-height: 18px;
+`;
+
+const NotificationText = styled(Text)`
+  font-weight: 600;
 `;
 
 const AlarmBox = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 4px;
-    column-gap: 2px;
-`;
-const AlarmParagraph = styled(NotificationParagraph)`
-    font-weight: 400;
+  display: grid;
+  grid-template-columns: 1fr 4px;
+  column-gap: 2px;
 `;
 const AlarmBedge = styled.div`
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: #EC5F50; 
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #ec5f50;
 `;
-
-const UserBox = styled.div``;
-const UserParagraph = styled(AlarmParagraph)``;

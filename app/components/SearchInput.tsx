@@ -45,11 +45,11 @@ export default function SearchInput() {
 const SearchBox = styled.div`
     padding: 8px 12px;
     width: 280px;
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 24px;
+    height: 40px;
+    display: flex;
     align-items: center;
-    background-color: #FFF;
+    justify-content: space-between;
+    background-color: transparent;
     border: 0.8px solid #DEDEDE;
     border-radius: 6px;
 

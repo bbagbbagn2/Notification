@@ -11,8 +11,6 @@ export default function Empty() {
 }
 
 const EmptyMessageContainer = styled.div`
-    margin: 0 auto;
-    padding: 74.5px 13.75%;
     height: 100%;
     border-top: 1px solid #DEDEDE;
     border-bottom: 1px solid #DEDEDE;
