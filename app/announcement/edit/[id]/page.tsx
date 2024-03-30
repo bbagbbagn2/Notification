@@ -1,16 +1,21 @@
-
 "use client";
 
-import React, { useState, useRef, ChangeEvent, Fragment, useEffect } from "react"
-import styled from "styled-components"
+import React, {
+  useState,
+  useRef,
+  ChangeEvent,
+  Fragment,
+  useEffect,
+} from "react";
+import styled from "styled-components";
 import { useRouter } from "next/navigation";
-import { Editor } from '@tinymce/tinymce-react';
+import { Editor } from "@tinymce/tinymce-react";
 
 type UpadateAnnouncementParams = {
   title: string;
   content: string;
   id: number;
-}
+};
 
 const updateAnnouncement = async (data: UpadateAnnouncementParams) => {
   const res = fetch(`http://localhost:3000/api/announcement/${data.id}`, {
@@ -26,28 +31,29 @@ const getAnnouncementById = async (id: number) => {
   const res = await fetch(`http://localhost:3000/api/announcement/${id}`);
   const data = await res.json();
   return data.post;
-}
+};
 
 export default function Edit({ params }: { params: { id: number } }) {
-  // const currentDate = new Date();
-  // const formatedDate = currentDate.toLocaleDateString();
+  const currentDate = new Date();
+  const formatedDate = currentDate.toLocaleDateString();
 
-  // const [title, setTitle] = useState<string>("");
-  // const textareaRef = React.createRef<HTMLTextAreaElement>();
+  const [title, setTitle] = useState<string>("");
+  const textareaRef = React.createRef<HTMLTextAreaElement>();
 
-  // const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-  //   setTitle(e.target.value);
-  //   autoResizeTextarea();
-  // }
+  const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setTitle(e.target.value);
+    autoResizeTextarea();
+  }
+  
   const titleRef = useRef<HTMLTextAreaElement | null>(null);
   const contentRef = useRef<Editor | null>(null);
-  const [initialContent, setInitialContent] = useState('');
-  const tinymcePlugins = ['link', 'lists', 'autoresize'];
+  const [initialContent, setInitialContent] = useState("");
+  const tinymcePlugins = ["link", "lists", "autoresize"];
   const tinymceToolbar =
-    'blocks fontfamily |' +
-    'bold italic underline strikethrough |' +
-    'alignleft aligncenter alignright alignjustify |' +
-    'bullist numlist blockquote link';
+    "blocks fontfamily |" +
+    "bold italic underline strikethrough |" +
+    "alignleft aligncenter alignright alignjustify |" +
+    "bullist numlist blockquote link";
 
   useEffect(() => {
     getAnnouncementById(params.id)
@@ -59,9 +65,9 @@ export default function Edit({ params }: { params: { id: number } }) {
       })
       .catch((error) => {
         console.error(error);
-      })
+      });
   }, []);
-  
+
   const autoResizeTextarea = () => {
     const textarea = titleRef.current;
 
@@ -81,12 +87,12 @@ export default function Edit({ params }: { params: { id: number } }) {
       });
       router.push("/");
     }
-  }
+  };
 
   const router = useRouter();
   const handleCancel = () => {
     router.back();
-  }
+  };
 
   return (
     <Fragment>
@@ -102,31 +108,23 @@ export default function Edit({ params }: { params: { id: number } }) {
                 spellCheck="false"
                 ref={titleRef}
                 onInput={autoResizeTextarea}
-                maxLength={100} />
+                maxLength={100}
+              />
             </TitleBox>
-            <DateBox>
-              <DateParagraph></DateParagraph>
-            </DateBox>
-            <Contour />
-            <TitleBox>
-              <TitleBoxTextArea
-                rows={1}
-                spellCheck="false"
-               />
-            </TitleBox>
-            <Editor
-              apiKey="68pzucurv0v0a40d8321m0d64yekfzb9mzq31ks3cbqojdur"
-              init={{
-                plugins: tinymcePlugins,
-                toolbar: tinymceToolbar,
-                min_height: 500,
-                menubar: false,
-                branding: false,
-                statusbar: false,
-                block_formats: '제목1=h2;제목2=h3;제목3=h4;본문=p;'
-              }}
-            />
-            <Contour />
+            <EditWrapper>
+              <Editor
+                apiKey="68pzucurv0v0a40d8321m0d64yekfzb9mzq31ks3cbqojdur"
+                init={{
+                  plugins: tinymcePlugins,
+                  toolbar: tinymceToolbar,
+                  min_height: 500,
+                  menubar: false,
+                  branding: false,
+                  statusbar: false,
+                  block_formats: "제목1=h2;제목2=h3;제목3=h4;본문=p;",
+                }}
+              />
+            </EditWrapper>
             <ButtonBox>
               <CancelButton onClick={handleCancel}>
                 <CancelParapraph>취소</CancelParapraph>
@@ -143,28 +141,22 @@ export default function Edit({ params }: { params: { id: number } }) {
 }
 
 const PageLayout = styled.div`
-  padding: 0 15%;
+  padding-inline: 15%;
   position: relative;
-  height: 90vh;
-  background-color: #FFF;
-  z-index: 1;
+  background-color: #fff;
 `;
 
 const PageContainer = styled.div`
-  margin: 0 auto;
-  padding: 0 14.287%;
-  padding-top: 60px;
-  padding-bottom: 64px;
-  width: 100%;
-  height: 100%;
+  padding-inline: 14.287%;
+  padding-bottom: 242px;
 `;
 
 const NotificationBox = styled.div`
-  padding-bottom: 24px;
+  margin-top: 60px;
   position: relative;
   width: 100%;
   height: 40px;
- `;
+`;
 
 const NotificationParagraph = styled.p`
   color: #222;
@@ -176,17 +168,14 @@ const NotificationParagraph = styled.p`
 
 const TitleBox = styled.div`
   margin-bottom: 16px;
-  position: relative;
   width: 100%;
-  height: auto;
-  background-color: #FFF;
- `;
+`;
 
 const TitleBoxTextArea = styled.textarea`
   padding: 16px 12px;
   width: 100%;
   height: 100%;
-  border: 0.8px solid #DEDEDE;
+  border: 0.8px solid #dedede;
   border-radius: 6px;
   color: #222;
   font-size: 32px;
@@ -195,11 +184,7 @@ const TitleBoxTextArea = styled.textarea`
   letter-spacing: -0.16px;
   resize: none;
 
-  
-  &:hover {
-    border: 0.8px solid #222222;
-  }
-
+  &:hover,
   &:active {
     border: 0.8px solid #222222;
   }
@@ -209,8 +194,8 @@ const TitleBoxTextArea = styled.textarea`
   }
 
   &:disabled {
-    border: 0.8px solid #DEDEDE;
-    background-color: #EFF0F3;
+    border: 0.8px solid #dedede;
+    background-color: #eff0f3;
   }
 `;
 
@@ -226,23 +211,25 @@ const DateParagraph = styled.p`
   line-height: 100%;
   letter-spacing: -0.08px;
 `;
-
-const Contour = styled.div`
-    width: 100%;
-    height: 16px;
-`;
+const EditWrapper = styled.div`
+  margin-top: 32px;
+  padding: 3px;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+`
 
 const ButtonBox = styled.div`
   width: 100%;
-  height: auto;
+  margin-top: 16px;
+  margin-bottom: 64px;
 `;
 
 const CancelButton = styled.button`
   margin-right: 16px;
   padding: 8px 12px;
-  border: 0.5px solid #DEDEDE;
+  border: 0.5px solid #dedede;
   border-radius: 6px;
-  background-color: #FFF;
+  background-color: #fff;
   cursor: pointer;
 `;
 const CancelParapraph = styled.p`
@@ -254,11 +241,11 @@ const CancelParapraph = styled.p`
 
 const SaveButton = styled.button`
   padding: 8px 12px;
-  border: 0.5px solid #FF5C00;
+  border: 0.5px solid #ff5c00;
   border-radius: 6px;
-  background-color: #FF5C00;
+  background-color: #ff5c00;
   cursor: pointer;
 `;
 const SaveParapraph = styled(CancelParapraph)`
-  color: #FFF;
+  color: #fff;
 `;

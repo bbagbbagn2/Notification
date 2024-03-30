@@ -131,6 +131,7 @@ const TitleBox = styled.div`
     grid-template-columns: 1fr 280px;
     justify-content: space-between;
 `;
+
 const TitleHeading = styled.h2`
     font-size: 32px;
     font-weight: 600;

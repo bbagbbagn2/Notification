@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import styled from "styled-components";
-
 import EmptyContainer from "./components/EmptyContainer";
 import SearchInput from "./components/SearchInput";
 
