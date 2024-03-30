@@ -6,8 +6,8 @@ import useSWR from 'swr'
 import styled from "styled-components"
 import { Post } from "@prisma/client"
 
-import SearchInput from "../components/SearchInput";
-import EmptyContainer from "../components/EmptyContainer"
+import SearchInput from "../_components/SearchInput";
+import EmptyContainer from "../_components/EmptyContainer"
 
 function formatPostDate(postDate: string): string{
     const currentDate = new Date();

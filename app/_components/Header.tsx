@@ -1,19 +1,18 @@
 import Link from "next/link";
 import styled from "styled-components";
-
 import Logo from "./Logo";
+import icon from "../../public/icons/Notification logo.svg";
 
 export default function Header() {
   return (
     <HeaderLayout>
       <Container>
         <LeftContainer>
-          <Logo />
+          <Logo src={icon} alt="logo" href="/" />
           <Link href="/">
             <HomeText>홈</HomeText>
           </Link>
         </LeftContainer>
-
         <RightContainer>
           <Link href="/">
             <NotificationText>공지</NotificationText>

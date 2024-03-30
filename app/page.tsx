@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import styled from "styled-components";
-import EmptyContainer from "./components/EmptyContainer";
-import SearchInput from "./components/SearchInput";
+import EmptyContainer from "./_components/EmptyContainer";
+import SearchInput from "./_components/SearchInput";
 
 function formatPostDate(postDate: string): string {
   const currentDate = new Date();
