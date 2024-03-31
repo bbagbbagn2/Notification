@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import search_icon from "../../public/image/search.svg";
+import { IconSearch } from "@/public/svgs";
 
 export default function SearchInput() {
   const search = useSearchParams();
@@ -34,7 +34,7 @@ export default function SearchInput() {
           placeholder="검색어"
         />
         <button type="submit">
-          <Image src={search_icon} alt="Search" width={24} height={24} />
+          <Image src={IconSearch} alt="Search" width={24} height={24} />
         </button>
       </SearchBox>
     </form>

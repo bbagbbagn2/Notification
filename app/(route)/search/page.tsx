@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import styled from "styled-components";
-import Post from "../_components/Post";
-import InnerContainer from "../_components/innerContainer";
-import SearchInput from "../_components/SearchInput";
-import { fetchPosts } from "../_services/postService";
-import { formatPostDate } from "../_utils/dateUtils";
-import Empty from "../_components/EmptyContainer";
+import Post from "../../_components/Post";
+import InnerContainer from "../../_components/innerContainer";
+import SearchInput from "../../_components/SearchInput";
+import { fetchPosts } from "../../_services/post";
+import { formatPostDate } from "../../_utils/dateUtils";
+import Empty from "../../_components/emptyContainer";
 
 export default function SearchPage() {
   const search = useSearchParams();

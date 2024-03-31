@@ -1,48 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import React, { Fragment, useEffect, useRef } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 import InnerContainer from "@/app/_components/innerContainer";
-
-function formatPostDate(postDate: string): string {
-  const currentDate = new Date();
-  const date = new Date(postDate);
-  const elapsedMilliseconds = currentDate.getTime() - date.getTime();
-  const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
-
-  if (elapsedSeconds < 60) {
-    return "방금 전";
-  } else if (elapsedSeconds < 120) {
-    return "1분 전";
-  } else if (elapsedSeconds < 180) {
-    return "2분 전";
-  } else if (elapsedSeconds < 3600) {
-    const elapsedMinutes = Math.floor(elapsedSeconds / 60);
-    return `${elapsedMinutes}분 전`;
-  } else if (elapsedSeconds < 86400) {
-    const elapsedHours = Math.floor(elapsedSeconds / 3600);
-    return `${elapsedHours}시간 전`;
-  } else {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}. ${month}. ${day}`;
-  }
-}
-
-const deleteAnnouncement = async (id: number) => {
-  const res = fetch(`http://localhost:3000/api/announcement/${id}`, {
-    method: "DELETE",
-  });
-  return res;
-};
-
-const getAnnouncementById = async (id: number) => {
-  const res = await fetch(`http://localhost:3000/api/announcement/${id}`);
-  const data = await res.json();
-  return data.post;
-};
+import ButtonBar from "@/app/_containers/detail/ButtonBar";
+import ButtonComponents from "@/app/_components/Button";
+import { formatPostDate } from "@/app/_utils/dateUtils";
+import {
+  getAnnouncementById,
+  deleteAnnouncement,
+} from "@/app/_services/announcement";
 
 export default function Details({ params }: { params: { id: number } }) {
   const titleRef = useRef<HTMLParagraphElement | null>(null);
@@ -91,21 +59,7 @@ export default function Details({ params }: { params: { id: number } }) {
           <DateParagraph ref={dateRef} />
         </DateBox>
         <ContentBox ref={contentRef} />
-        <ButtonBox>
-          <Link href="/">
-            <BackButton>
-              <Text color="#000">목록으로</Text>
-            </BackButton>
-          </Link>
-          <Link href={`/announcement/edit/${params.id}`}>
-            <EditButton>
-              <Text>수정</Text>
-            </EditButton>
-          </Link>
-          <DeleteButton onClick={handleDelete}>
-            <Text>삭제</Text>
-          </DeleteButton>
-        </ButtonBox>
+        <ButtonBar params={{id: 123}} />
       </InnerContainer>
     </Fragment>
   );
@@ -126,7 +80,6 @@ const NotificationWrapper = styled.div`
 
 const TitleBox = styled.div`
   padding-bottom: 16px;
-  height: auto;
 `;
 
 const TitleHeading = styled.p`
@@ -161,32 +114,4 @@ const ButtonBox = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
-`;
-
-const Button = styled.button`
-  padding: 12px;
-  border-radius: 6px;
-`;
-
-const BackButton = styled(Button)`
-  background-color: #fff;
-  border: 0.5px solid #dedede;
-`;
-
-const EditButton = styled(Button)`
-  border: 0.5px solid #ff5c00;
-  background-color: #ff5c00;
-`;
-
-const DeleteButton = styled(Button)`
-  border: 0.5px solid #ff0000;
-  background-color: #ff0000;
-`;
-
-const Text = styled.p`
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 100%;
-  letter-spacing: -0.08px;
-  color: ${(props) => (props.color ? "#000" : "#fff")};
 `;
