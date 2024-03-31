@@ -22,7 +22,6 @@ export default function SearchInput() {
 
     const encodedSearchQuery = encodeURI(searchQuery);
 
-    console.log(encodedSearchQuery);
     router.push(`/search?q=${encodedSearchQuery}`);
   };
 
@@ -64,7 +63,7 @@ const SearchBox = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  color: #222222;
+  color: #222;
   font-size: 16px;
   line-height: 100%;
   letter-spacing: -0.08px;

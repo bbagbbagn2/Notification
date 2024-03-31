@@ -1,48 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import styled from "styled-components";
-import EmptyContainer from "./_components/EmptyContainer";
 import SearchInput from "./_components/SearchInput";
+import { fetchPosts } from "./_services/postService";
+import Post from "./_components/Post";
 
-function formatPostDate(postDate: string): string {
-  const currentDate = new Date();
-  const date = new Date(postDate);
-  const elapsedMilliseconds = currentDate.getTime() - date.getTime();
-  const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
-
-  if (elapsedSeconds < 60) {
-    return "방금 전";
-  } else if (elapsedSeconds < 120) {
-    return "1분 전";
-  } else if (elapsedSeconds < 180) {
-    return "2분 전";
-  } else if (elapsedSeconds < 3600) {
-    const elapsedMinutes = Math.floor(elapsedSeconds / 60);
-    return `${elapsedMinutes}분 전`;
-  } else if (elapsedSeconds < 86400) {
-    const elapsedHours = Math.floor(elapsedSeconds / 3600);
-    return `${elapsedHours}시간 전`;
-  } else {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}. ${month}. ${day}`;
-  }
-}
-
-async function fetchPosts() {
-  const res = await fetch("http://localhost:3000/api/announcement", {
-    next: {
-      revalidate: 10,
-    },
-  });
-  const data = await res.json();
-  return data.posts;
-}
+const ANNOUNCEMENT_API_URL = "http://localhost:3000/api/announcement";
 
 export default async function Home() {
-  const posts = await fetchPosts();
+  const posts = await fetchPosts(ANNOUNCEMENT_API_URL);
 
   console.log(posts);
   return (
@@ -54,22 +20,13 @@ export default async function Home() {
           </div>
           <SearchInput />
         </TitleWrapper>
-        {posts.length > 0 ? (
-          <PostContiner>
-            {posts.reverse().map((post: any) => (
-              <PostList key={post.id}>
-                <Link href={`/announcement/detail/${post.id}`}>
-                  <PostItem>
-                    <PostHeading>{post.title}</PostHeading>
-                    <PostDate>{formatPostDate(post.createdAt)}</PostDate>
-                  </PostItem>
-                </Link>
-              </PostList>
-            ))}
-          </PostContiner>
-        ) : (
-          <EmptyContainer />
-        )}
+        <PostContiner>
+          {posts.reverse().map((post: any) => (
+            <PostList key={post.id}>
+              <Post post={post} />
+            </PostList>
+          ))}
+        </PostContiner>
       </PageContainer>
     </PageLayout>
   );
@@ -118,26 +75,4 @@ const PostList = styled.ul`
   &:hover {
     background-color: #eff0f3;
   }
-`;
-
-const PostItem = styled.li`
-display: flex;
-flex-direction: column;
-gap: 12px;
-`;
-
-const PostHeading = styled.p`
-  color: #222222;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 23.04px;
-  word-wrap: break-word;
-`;
-
-const PostDate = styled.p`
-  color: #707070;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 100%;
-  word-wrap: break-word;
 `;

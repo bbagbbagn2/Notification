@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import Logo from './logo';
+import Logo from "./logo";
 
 export default function Header() {
   return (
@@ -79,6 +79,7 @@ const AlarmBox = styled.div`
   grid-template-columns: 1fr 4px;
   column-gap: 2px;
 `;
+
 const AlarmBedge = styled.div`
   width: 4px;
   height: 4px;

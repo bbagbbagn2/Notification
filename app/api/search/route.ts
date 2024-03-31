@@ -1,7 +1,7 @@
 import prisma from "../../db";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function main() {
+async function connectToDatabase() {
   try {
     await prisma.$connect();
   } catch (error) {
@@ -11,12 +11,12 @@ export async function main() {
 
 export const GET = async (req: NextRequest, res: NextResponse) => {
   try {
+    await connectToDatabase();
+
     const searchParams = req.nextUrl.searchParams;
-    const query = searchParams.get('q');
+    const query = searchParams.get("q");
 
-    await main();
-
-    if (typeof query !== 'string') {
+    if (typeof query !== "string") {
       throw new Error("Invalid");
     }
 
@@ -24,15 +24,15 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
       where: {
         title: {
           contains: query,
-        }
-      }
-    }
+        },
+      },
+    });
+
+    return NextResponse.json(
+      { message: "successful", query, posts },
+      { status: 200 }
     );
-
-    console.log(query);
-
-    return NextResponse.json({ message: "successful", query, posts }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: "Error" }, { status: 500 });
   }
-}; 
+};

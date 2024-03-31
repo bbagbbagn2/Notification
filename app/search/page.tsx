@@ -4,66 +4,27 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import styled from "styled-components";
-import { Post } from "@prisma/client";
+import Post from "../_components/Post";
 import InnerContainer from "../_components/innerContainer";
 import SearchInput from "../_components/SearchInput";
-import EmptyContainer from "../_components/EmptyContainer";
-
-function formatPostDate(postDate: string): string {
-  const currentDate = new Date();
-  const date = new Date(postDate);
-  const elapsedMilliseconds = currentDate.getTime() - date.getTime();
-  const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
-
-  if (elapsedSeconds < 60) {
-    return "방금 전";
-  } else if (elapsedSeconds < 120) {
-    return "1분 전";
-  } else if (elapsedSeconds < 180) {
-    return "2분 전";
-  } else if (elapsedSeconds < 3600) {
-    const elapsedMinutes = Math.floor(elapsedSeconds / 60);
-    return `${elapsedMinutes}분 전`;
-  } else if (elapsedSeconds < 86400) {
-    const elapsedHours = Math.floor(elapsedSeconds / 3600);
-    return `${elapsedHours}시간 전`;
-  } else {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}. ${month}. ${day}`;
-  }
-}
-
-async function fetchPosts(url: string) {
-  const res = await fetch(url, {
-    next: {
-      revalidate: 10,
-    },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch potsts");
-  }
-
-  return res.json();
-}
+import { fetchPosts } from "../_services/postService";
+import { formatPostDate } from "../_utils/dateUtils";
+import Empty from "../_components/EmptyContainer";
 
 export default function SearchPage() {
   const search = useSearchParams();
   const searchQuery = search ? search.get("q") : null;
   const endcodedSearchQuery = encodeURI(searchQuery || "");
 
-  const { data, isLoading } = useSWR<{ posts: Array<Post> }>(
+  const { data, isLoading } = useSWR(
     `/api/search?q=${endcodedSearchQuery}`,
     fetchPosts
   );
 
-  if (!data?.posts) {
+  if (!data) {
     return null;
   }
 
-  console.log(data);
   return (
     <InnerContainer>
       <AnnouncementBox>
@@ -74,9 +35,9 @@ export default function SearchPage() {
           <SearchInput />
         </TitleBox>
         <Contour />
-        {data.posts.length > 0 ? (
+        {data.length > 0 ? (
           <PostContiner>
-            {data.posts.reverse().map((post: any) => (
+            {data.reverse().map((post: any) => (
               <PostList key={post.id}>
                 <Link href={`/announcement/detail/${post.id}`}>
                   <PostItem>
@@ -88,7 +49,7 @@ export default function SearchPage() {
             ))}
           </PostContiner>
         ) : (
-          <EmptyContainer />
+          <Empty />
         )}
       </AnnouncementBox>
     </InnerContainer>
