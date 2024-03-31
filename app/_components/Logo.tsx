@@ -1,24 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import logo from "../../public/icons/Notification logo.svg";
 
-type LogoProps = {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  href: string;
-};
-
-export default function Logo({
-  src,
-  alt,
-  width = 166,
-  height = 26,
-  href,
-}: LogoProps) {
+export default function Logo() {
   return (
-    <Link href={href}>
-      <Image src={src} alt={alt} width={width} height={height} />
+    <Link href="/">
+      <Image src={logo} alt="logo" width={166} height={26} />
     </Link>
   );
 }

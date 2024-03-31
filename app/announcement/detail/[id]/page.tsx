@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { Fragment, useEffect, useRef } from "react";
 import styled from "styled-components";
+import InnerContainer from "@/app/_components/innerContainer";
 
 function formatPostDate(postDate: string): string {
   const currentDate = new Date();
@@ -79,48 +80,36 @@ export default function Details({ params }: { params: { id: number } }) {
 
   return (
     <Fragment>
-      <PageLayout>
-        <PageContainer>
-          <NotificationWrapper>
-            <p>공지사항</p>
-          </NotificationWrapper>
-          <TitleBox>
-            <TitleHeading ref={titleRef} />
-          </TitleBox>
-          <DateBox>
-            <DateParagraph ref={dateRef} />
-          </DateBox>
-          <ContentBox ref={contentRef} />
-          <ButtonBox>
-            <Link href="/">
-              <BackButton>
-                <Text color="#000">목록으로</Text>
-              </BackButton>
-            </Link>
-            <Link href={`/announcement/edit/${params.id}`}>
-              <EditButton>
-                <Text>수정</Text>
-              </EditButton>
-            </Link>
-            <DeleteButton onClick={handleDelete}>
-              <Text>삭제</Text>
-            </DeleteButton>
-          </ButtonBox>
-        </PageContainer>
-      </PageLayout>
+      <InnerContainer>
+        <NotificationWrapper>
+          <p>공지사항</p>
+        </NotificationWrapper>
+        <TitleBox>
+          <TitleHeading ref={titleRef} />
+        </TitleBox>
+        <DateBox>
+          <DateParagraph ref={dateRef} />
+        </DateBox>
+        <ContentBox ref={contentRef} />
+        <ButtonBox>
+          <Link href="/">
+            <BackButton>
+              <Text color="#000">목록으로</Text>
+            </BackButton>
+          </Link>
+          <Link href={`/announcement/edit/${params.id}`}>
+            <EditButton>
+              <Text>수정</Text>
+            </EditButton>
+          </Link>
+          <DeleteButton onClick={handleDelete}>
+            <Text>삭제</Text>
+          </DeleteButton>
+        </ButtonBox>
+      </InnerContainer>
     </Fragment>
   );
 }
-
-const PageLayout = styled.div`
-  padding: 0 15%;
-  position: relative;
-  background-color: #fff;
-`;
-
-const PageContainer = styled.div`
-  padding: 0 14.287%;
-`;
 
 const NotificationWrapper = styled.div`
   margin-top: 60px;
@@ -199,5 +188,5 @@ const Text = styled.p`
   font-weight: 500;
   line-height: 100%;
   letter-spacing: -0.08px;
-  color: ${props => props.color ? "#000" : "#fff" };
+  color: ${(props) => (props.color ? "#000" : "#fff")};
 `;
