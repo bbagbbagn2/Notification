@@ -2,10 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import ButtonComponents from "@/app/_components/Button";
-import useDeleteAnnouncement from "./useDelete";
+import { deleteAnnouncement } from "@/app/_services/announcement";
 
 export default function ButtonBar({ params }: { params: { id: number } }) {
-  const { handleDelete } = useDeleteAnnouncement();
+  const handleDelete = async () => {
+    const shouldDelete = window.confirm("정말 삭제하시겠습니까?");
+
+    if (shouldDelete) {
+      try {
+        const res = await deleteAnnouncement(params.id);
+        if (res.status === 200) {
+          window.location.href = "/";
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   return (
     <ButtonBox>
@@ -19,7 +32,7 @@ export default function ButtonBar({ params }: { params: { id: number } }) {
         color="#ff0000"
         textColor="#fff"
         text="삭제"
-        onClick={() => handleDelete(params.id)}
+        onClick={() => handleDelete()}
       />
     </ButtonBox>
   );
