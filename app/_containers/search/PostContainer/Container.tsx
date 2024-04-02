@@ -11,6 +11,8 @@ const ANNOUNCEMENT_DETAIL_URL = "/announcement/detail/";
 export default function PostContainer() {
   const { data, isLoading } = usePostData();
 
+  
+
   if (!data) {
     return null;
   }

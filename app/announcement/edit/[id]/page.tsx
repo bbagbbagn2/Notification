@@ -8,8 +8,11 @@ import React, {
   useEffect,
 } from "react";
 import styled from "styled-components";
-import { useRouter } from "next/navigation";
 import InnerContainer from "@/app/_components/innerContainer";
+import TitleWrapper from "@/app/_containers/edit/TitleBox";
+import DateWrapper from "@/app/_containers/edit/DateBox";
+import ContentWrapper from "@/app/_containers/edit/ContentBox";
+import ButtonBar from "@/app/_containers/edit/ButtonBar";
 
 type UpadateAnnouncementParams = {
   title: string;
@@ -34,7 +37,6 @@ const getAnnouncementById = async (id: number) => {
 };
 
 export default function Edit({ params }: { params: { id: number } }) {
-  const router = useRouter();
   const titleRef = useRef<HTMLTextAreaElement | null>(null);
   const contentRef = useRef<HTMLParagraphElement | null>(null);
   const [initialContent, setInitialContent] = useState("");
@@ -66,30 +68,15 @@ export default function Edit({ params }: { params: { id: number } }) {
         <NotificationBox>
           <NotificationParagraph>공지사항</NotificationParagraph>
         </NotificationBox>
-        <form>
-          <TitleBox>
-            <TitleBoxTextArea
-              rows={1}
-              spellCheck="false"
-              ref={titleRef}
-              onInput={autoResizeTextarea}
-              maxLength={100}
-            />
-          </TitleBox>
-          <EditWrapper></EditWrapper>
-          <ButtonBox>
-            <CancelButton>
-              <CancelParapraph>취소</CancelParapraph>
-            </CancelButton>
-            <SaveButton type="submit">
-              <SaveParapraph>저장</SaveParapraph>
-            </SaveButton>
-          </ButtonBox>
-        </form>
+        <TitleWrapper params={{ id: params.id }} />
+        <DateWrapper params={{ id: params.id }} />
+        <ContentWrapper params={{ id: params.id }} />
+        <ButtonBar params={{ id: params.id }} />
       </InnerContainer>
     </Fragment>
   );
 }
+
 const NotificationBox = styled.div`
   margin-top: 60px;
   position: relative;
@@ -103,88 +90,4 @@ const NotificationParagraph = styled.p`
   font-weight: 600;
   line-height: 100%;
   letter-spacing: -0.08px;
-`;
-
-const TitleBox = styled.div`
-  margin-bottom: 16px;
-  width: 100%;
-`;
-
-const TitleBoxTextArea = styled.textarea`
-  padding: 16px 12px;
-  width: 100%;
-  height: 100%;
-  border: 0.8px solid #dedede;
-  border-radius: 6px;
-  color: #222;
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 122%;
-  letter-spacing: -0.16px;
-  resize: none;
-
-  &:hover,
-  &:active {
-    border: 0.8px solid #222222;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:disabled {
-    border: 0.8px solid #dedede;
-    background-color: #eff0f3;
-  }
-`;
-
-const DateBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: auto;
-`;
-
-const DateParagraph = styled.p`
-  color: #787878;
-  font-size: 16px;
-  line-height: 100%;
-  letter-spacing: -0.08px;
-`;
-const EditWrapper = styled.div`
-  margin-top: 32px;
-  padding: 3px;
-  border-top: 1px solid #dedede;
-  border-bottom: 1px solid #dedede;
-`;
-
-const ButtonBox = styled.div`
-  width: 100%;
-  margin-top: 16px;
-  margin-bottom: 64px;
-`;
-
-const CancelButton = styled.button`
-  margin-right: 16px;
-  padding: 8px 12px;
-  border: 0.5px solid #dedede;
-  border-radius: 6px;
-  background-color: #fff;
-  cursor: pointer;
-`;
-const CancelParapraph = styled.p`
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 100%;
-  letter-spacing: -0.08px;
-`;
-
-const SaveButton = styled.button`
-  padding: 8px 12px;
-  border: 0.5px solid #ff5c00;
-  border-radius: 6px;
-  background-color: #ff5c00;
-  cursor: pointer;
-`;
-const SaveParapraph = styled(CancelParapraph)`
-  color: #fff;
 `;
