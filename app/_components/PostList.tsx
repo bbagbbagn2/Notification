@@ -1,36 +1,36 @@
-"use client";
-
+import Link from "next/link";
 import styled from "styled-components";
 import { formatPostDate } from "@/app/_utils/dateUtils";
 import { Post } from "@/app/_types/Post";
 
-type PostItemProps = {
+type PostProps = {
   post: Post;
 };
 
-export default function PostItem({ post }: PostItemProps) {
+export default function PostList({ post }: PostProps) {
+  const { id, title, createdAt } = post;
+  const formattedDate = formatPostDate(createdAt);
+
   return (
-    <PostList key={post.id}>
-      <Item>
-        <PostHeading>{post.title}</PostHeading>
-        <PostDate>{formatPostDate(post.createdAt)}</PostDate>
-      </Item>
-    </PostList>
+    <List key={id}>
+      <PostItem>
+        <PostHeading>{title}</PostHeading>
+        <PostDate>{formattedDate}</PostDate>
+      </PostItem>
+    </List>
   );
 }
-
-const PostList = styled.ul`
+const List = styled.ul`
   padding: 16px 24px;
 
   &:hover {
     background-color: #eff0f3;
   }
 `;
-
-const Item = styled.li`
+const PostItem = styled.li`
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  gap: 12px;
 `;
 
 const PostHeading = styled.p`

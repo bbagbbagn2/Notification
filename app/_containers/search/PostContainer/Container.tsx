@@ -4,7 +4,9 @@ import Link from "next/link";
 import styled from "styled-components";
 import usePostData from "./usePostData";
 import Empty from "@/app/_components/emptyContainer";
-import PostItem from "./PostItem";
+import PostList from "@/app/_components/PostList";
+
+const ANNOUNCEMENT_DETAIL_URL = "/announcement/detail/";
 
 export default function PostContainer() {
   const { data, isLoading } = usePostData();
@@ -19,8 +21,8 @@ export default function PostContainer() {
         <PostContiner>
           {data
             .map((post: any) => (
-              <Link href={`/announcement/detail/${post.id}`}>
-                <PostItem post={post} />
+              <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`}>
+                <PostList post={post} />
               </Link>
             ))
             .reverse()}
