@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import SearchInput from "./_components/SearchInput";
 import { fetchPosts } from "./_services/post";
@@ -8,6 +10,7 @@ import Post from "./_components/Post";
 const ANNOUNCEMENT_API_URL = "http://localhost:3000/api/announcement";
 
 export default async function Home() {
+  
   const posts = await fetchPosts(ANNOUNCEMENT_API_URL);
 
   console.log(posts);

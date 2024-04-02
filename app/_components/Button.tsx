@@ -25,7 +25,8 @@ const Button = styled.button`
   padding: 12px;
   border-radius: 6px;
   border: solid 1px ${(props) => (props.color ? props.color : "#dedede")};
-  background-color: ${(props) => (props.color ? props.color : "#fff")};
+  background-color: ${(props) =>
+    props.color ? props.color : "var(--color-white)"};
 `;
 
 const Text = styled.p`

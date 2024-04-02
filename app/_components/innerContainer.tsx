@@ -20,7 +20,7 @@ export default function InnerContainer({
 const Layout = styled.div`
   padding-inline: 15%;
   position: relative;
-  background-color: #fff;
+  background-color: var(--color-white);
 `;
 
 const Container = styled.div<InnerContainerProps>`

@@ -59,7 +59,7 @@ const RightContainer = styled.div`
 `;
 
 const Text = styled.p`
-  color: #fff;
+  color: var(--color-white);
   font-size: 14px;
   font-weight: 400;
   line-height: 14px;

@@ -9,7 +9,7 @@ type useAnnouncementDetailsProps = {
   dateRef: RefObject<HTMLParagraphElement>;
 };
 
-function useAnnouncementDetails({
+export default function useAnnouncementDetails({
   id,
   titleRef,
   contentRef,
@@ -29,5 +29,3 @@ function useAnnouncementDetails({
       });
   }, [id, titleRef, contentRef, dateRef]);
 }
-
-export default useAnnouncementDetails;

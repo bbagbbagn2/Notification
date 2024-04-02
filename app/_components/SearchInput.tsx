@@ -1,28 +1,23 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import { IconSearch } from "@/public/svgs";
 
 export default function SearchInput() {
-  const search = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState<string | null>(
-    search ? search.get("q") : ""
-  );
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const router = useRouter();
 
   const onSearch = (event: FormEvent) => {
     event.preventDefault();
 
-    if (typeof searchQuery !== "string") {
+    if (searchQuery.trim() === "") {
       return;
     }
 
-    const encodedSearchQuery = encodeURI(searchQuery);
-
-    router.push(`/search?q=${encodedSearchQuery}`);
+    router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
   };
 
   return (
@@ -30,7 +25,9 @@ export default function SearchInput() {
       <SearchBox>
         <Input
           value={searchQuery || ""}
-          onChange={(event: any) => setSearchQuery(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setSearchQuery(event.target.value)
+          }
           placeholder="검색어"
         />
         <button type="submit">

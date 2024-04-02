@@ -5,7 +5,7 @@ import ButtonComponents from "@/app/_components/Button";
 import { deleteAnnouncement } from "@/app/_services/announcement";
 
 export default function ButtonBar({ params }: { params: { id: number } }) {
-  const handleDelete = async () => {
+  async function handleDelete() {
     const shouldDelete = window.confirm("정말 삭제하시겠습니까?");
 
     if (shouldDelete) {
@@ -18,7 +18,7 @@ export default function ButtonBar({ params }: { params: { id: number } }) {
         console.error(error);
       }
     }
-  };
+  }
 
   return (
     <ButtonBox>
@@ -26,11 +26,15 @@ export default function ButtonBar({ params }: { params: { id: number } }) {
         <ButtonComponents text="목록으로" />
       </Link>
       <Link href={`/announcement/edit/${params.id}`}>
-        <ButtonComponents color="#ff5c00" textColor="#fff" text="수정" />
+        <ButtonComponents
+          color="#ff5c00"
+          textColor="var(--color-white)"
+          text="수정"
+        />
       </Link>
       <ButtonComponents
         color="#ff0000"
-        textColor="#fff"
+        textColor="var(--color-white)"
         text="삭제"
         onClick={() => handleDelete()}
       />

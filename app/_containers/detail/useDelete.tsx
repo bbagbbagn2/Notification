@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { deleteAnnouncement } from "@/app/_services/announcement";
 
-const useDeleteAnnouncement = () => {
+export default function useDeleteAnnouncement() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
 
@@ -23,6 +23,4 @@ const useDeleteAnnouncement = () => {
   };
 
   return { handleDelete, isDeleting, deleteError };
-};
-
-export default useDeleteAnnouncement;
+}
