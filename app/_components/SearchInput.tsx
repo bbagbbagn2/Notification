@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
-import Image from "next/image";
-import styled from "styled-components";
-import { IconSearch } from "@/public/svgs";
+import { useRouter } from 'next/navigation';
+import { FormEvent, useState } from 'react';
+import Image from 'next/image';
+import styled from 'styled-components';
+import { IconSearch } from '@/public/svgs';
 
 export default function SearchInput() {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const router = useRouter();
 
   const onSearch = (event: FormEvent) => {
     event.preventDefault();
 
-    if (searchQuery.trim() === "") {
+    if (searchQuery.trim() === '') {
       return;
     }
 
@@ -24,7 +24,7 @@ export default function SearchInput() {
     <form onSubmit={onSearch}>
       <SearchBox>
         <Input
-          value={searchQuery || ""}
+          value={searchQuery || ''}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setSearchQuery(event.target.value)
           }

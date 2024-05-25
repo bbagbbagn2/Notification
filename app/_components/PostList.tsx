@@ -1,7 +1,7 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { formatPostDate } from "@/app/_utils/dateUtils";
-import { Post } from "@/app/_types/Post";
+import Link from 'next/link';
+import styled from 'styled-components';
+import { formatPostDate } from '@/app/_utils/dateUtils';
+import { Post } from '@/app/_types/Post';
 
 type PostProps = {
   post: Post;

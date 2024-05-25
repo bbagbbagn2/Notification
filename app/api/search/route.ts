@@ -1,11 +1,11 @@
-import prisma from "../../db";
-import { NextRequest, NextResponse } from "next/server";
+import prisma from '../../db';
+import { NextRequest, NextResponse } from 'next/server';
 
 async function connectToDatabase() {
   try {
     await prisma.$connect();
   } catch (error) {
-    throw new Error("Database Connection Unsuccessful");
+    throw new Error('Database Connection Unsuccessful');
   }
 }
 
@@ -14,10 +14,10 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     await connectToDatabase();
 
     const searchParams = req.nextUrl.searchParams;
-    const query = searchParams.get("q");
+    const query = searchParams.get('q');
 
-    if (typeof query !== "string") {
-      throw new Error("Invalid");
+    if (typeof query !== 'string') {
+      throw new Error('Invalid');
     }
 
     const posts = await prisma.post.findMany({
@@ -29,10 +29,10 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     });
 
     return NextResponse.json(
-      { message: "successful", query, posts },
-      { status: 200 }
+      { message: 'successful', query, posts },
+      { status: 200 },
     );
   } catch (error) {
-    return NextResponse.json({ message: "Error" }, { status: 500 });
+    return NextResponse.json({ message: 'Error' }, { status: 500 });
   }
 };

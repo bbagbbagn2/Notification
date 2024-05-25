@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import InnerContainer from "@/app/_components/innerContainer";
-import SearchHeader from "@/app/_components/SearchHeader";
-import PostContainer from "./PostContainer";
+import InnerContainer from '@/app/_components/innerContainer';
+import SearchHeader from '@/app/_components/SearchHeader';
+import PostContainer from './PostContainer';
 
 type ContainerProps = {
   ApiURL: string;

@@ -1,28 +1,26 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import { formatPostDate } from "@/app/_utils/dateUtils";
-import { getAnnouncementById } from "@/app/_services/announcement";
+import React, { LegacyRef } from 'react';
+import styled from 'styled-components';
+import { formatPostDate } from '@/app/_utils/dateUtils';
+import { useFetchData } from '../useFetchData';
 
-export default function DateWrapper({ params }: { params: { id: number } }) {
-  const dateRef = useRef<HTMLParagraphElement | null>(null);
+type DateWrapperProps = {
+  params: {
+    id: number;
+  };
+};
 
-  useEffect(() => {
-    getAnnouncementById(params.id)
-      .then((data) => {
-        if (dateRef.current) {
-          dateRef.current.innerText = formatPostDate(data.createdAt);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+export default function DateWrapper({ params }: DateWrapperProps) {
+  const dateRef = useFetchData(params.id, (data) => {
+    if (dateRef.current) {
+      dateRef.current.innerText = formatPostDate(data.createdAt);
+    }
+  });
 
   return (
     <DateBox>
-      <DateParagraph ref={dateRef} />
+      <DateParagraph ref={dateRef as LegacyRef<HTMLParagraphElement>} />
     </DateBox>
   );
 }

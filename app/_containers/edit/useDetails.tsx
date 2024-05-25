@@ -1,6 +1,6 @@
-import { useEffect, RefObject } from "react";
-import { getAnnouncementById } from "@/app/_services/announcement";
-import { formatPostDate } from "@/app/_utils/dateUtils";
+import { useEffect, RefObject } from 'react';
+import { getAnnouncementById } from '@/app/_services/announcement';
+import { formatPostDate } from '@/app/_utils/dateUtils';
 
 type useDetailsProps = {
   id: number;

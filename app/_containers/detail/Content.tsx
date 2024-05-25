@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import { formatPostDate } from "@/app/_utils/dateUtils";
-import { getAnnouncementById } from "@/app/_services/announcement";
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { formatPostDate } from '@/app/_utils/dateUtils';
+import { getAnnouncementById } from '@/app/_services/announcement';
 
 export default function Content({ params }: { params: { id: number } }) {
   const titleRef = useRef<HTMLParagraphElement | null>(null);

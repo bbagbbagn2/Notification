@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { deleteAnnouncement } from "@/app/_services/announcement";
+import { useState } from 'react';
+import { deleteAnnouncement } from '@/app/_services/announcement';
 
 export default function useDeleteAnnouncement() {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -10,13 +10,13 @@ export default function useDeleteAnnouncement() {
     try {
       const res = await deleteAnnouncement(id);
       if (res.status === 200) {
-        window.location.href = "/";
+        window.location.href = '/';
       } else {
-        setDeleteError("Failed to delete announcement");
+        setDeleteError('Failed to delete announcement');
       }
     } catch (error) {
       console.error(error);
-      setDeleteError("An error occurred while deleting the announcement");
+      setDeleteError('An error occurred while deleting the announcement');
     } finally {
       setIsDeleting(false);
     }

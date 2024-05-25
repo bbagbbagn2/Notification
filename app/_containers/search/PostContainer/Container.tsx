@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import styled from "styled-components";
-import usePostData from "./usePostData";
-import Empty from "@/app/_components/emptyContainer";
-import PostList from "@/app/_components/PostList";
+import Link from 'next/link';
+import styled from 'styled-components';
+import usePostData from './usePostData';
+import Empty from '@/app/_components/emptyContainer';
+import PostList from '@/app/_components/PostList';
 
-const ANNOUNCEMENT_DETAIL_URL = "/announcement/detail/";
+const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
 
 export default function PostContainer() {
   const { data, isLoading } = usePostData();

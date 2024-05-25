@@ -1,43 +1,33 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
-import { getAnnouncementById } from "@/app/_services/announcement";
+import React, { ChangeEvent, useState } from 'react';
+import styled from 'styled-components';
+import { useFetchData } from '../useFetchData';
 
-export default function ContentWrapper({ params }: { params: { id: number } }) {
-  const contentRef = useRef<HTMLTextAreaElement | null>(null);
-  const [textAreaHeight, setTextAreaHeight] = useState<string>("auto");
+type ContentWrapperProps = {
+  params: {
+    id: number;
+  };
+};
 
-  useEffect(() => {
-    getAnnouncementById(params.id)
-      .then((data) => {
-        if (contentRef.current) {
-          contentRef.current.innerText = data.content;
-          adjustTextAreaHeight();
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  function adjustTextAreaHeight() {
+export default function ContentWrapper({ params }: ContentWrapperProps) {
+  const contentRef = useFetchData(params.id, (data) => {
     if (contentRef.current) {
-      contentRef.current.style.height = "auto";
-      contentRef.current.style.height = contentRef.current.scrollHeight + "px";
+      contentRef.current.value = data.content;
+      adjustTextAreaHeight(contentRef.current);
     }
+  });
+
+  function adjustTextAreaHeight(textarea: HTMLTextAreaElement) {
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
-  function handleInputChange() {
-    adjustTextAreaHeight();
+  function handleInputChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    adjustTextAreaHeight(event.target);
   }
-  return (
-    <ContentTextarea
-      ref={contentRef}
-      style={{ height: textAreaHeight }}
-      onChange={handleInputChange}
-    />
-  );
+
+  return <ContentTextarea ref={contentRef} onChange={handleInputChange} />;
 }
 
 const ContentTextarea = styled.textarea`

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import InnerContainer from "@/app/_components/innerContainer";
-import SearchHeader from "@/app/_components/SearchHeader";
-import PostContainer from "./PostContainer/Container";
+import InnerContainer from '@/app/_components/innerContainer';
+import SearchHeader from '@/app/_components/SearchHeader';
+import PostContainer from './PostContainer/Container';
 
 export default function SearchContainer() {
   return (

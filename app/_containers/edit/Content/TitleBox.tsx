@@ -1,30 +1,27 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
-import { getAnnouncementById } from "@/app/_services/announcement";
+import React from 'react';
+import styled from 'styled-components';
+import { useFetchData } from '../useFetchData';
 
-export default function TitleWrapper({ params }: { params: { id: number } }) {
-  const titleRef = useRef<HTMLTextAreaElement | null>(null);
-  const [textAreaHeight, setTextAreaHeight] = useState<string>("auto");
+type TitleWrapperProps = {
+  params: {
+    id: number;
+  };
+};
 
-  useEffect(() => {
-    getAnnouncementById(params.id)
-      .then((data) => {
-        if (titleRef.current) {
-          titleRef.current.innerText = data.title;
-          adjustTextAreaHeight();
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+export default function TitleWrapper({ params }: TitleWrapperProps) {
+  const titleRef = useFetchData(params.id, (data) => {
+    if (titleRef.current) {
+      titleRef.current.value = data.title;
+      adjustTextAreaHeight();
+    }
+  });
 
   function adjustTextAreaHeight() {
     if (titleRef.current) {
-      titleRef.current.style.height = "auto";
-      titleRef.current.style.height = titleRef.current.scrollHeight + "px";
+      titleRef.current.style.height = 'auto';
+      titleRef.current.style.height = `${titleRef.current.scrollHeight}px`;
     }
   }
 
@@ -33,13 +30,7 @@ export default function TitleWrapper({ params }: { params: { id: number } }) {
   }
 
   return (
-    <TitleBox
-      id="title"
-      rows={1}
-      ref={titleRef}
-      style={{ height: textAreaHeight }}
-      onChange={handleInputChange}
-    />
+    <TitleBox id="title" rows={1} ref={titleRef} onChange={handleInputChange} />
   );
 }
 

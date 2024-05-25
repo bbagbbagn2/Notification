@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import MainContainer from "./_containers/main/Container";
+import MainContainer from './_containers/main/Container';
 
-const ANNOUNCEMENT_API_URL = "http://localhost:3000/api/announcement";
+const API_ANNOUNCEMENT_URL = `${process.env.NEXT_PUBLIC_FE_URL}/api/announcement`;
 
 export default function MainPage() {
-  return <MainContainer ApiURL={ANNOUNCEMENT_API_URL} />;
+  return <MainContainer ApiURL={API_ANNOUNCEMENT_URL} />;
 }

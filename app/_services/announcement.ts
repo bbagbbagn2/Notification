@@ -1,4 +1,4 @@
-const ANNOUNCEMENT_API_URL = "/api/announcement/";
+const ANNOUNCEMENT_API_URL = '/api/announcement/';
 
 async function getAnnouncementById(id: number) {
   const res = await fetch(`${ANNOUNCEMENT_API_URL}${id}`);
@@ -8,7 +8,7 @@ async function getAnnouncementById(id: number) {
 
 async function deleteAnnouncement(id: number) {
   const res = fetch(`${ANNOUNCEMENT_API_URL}${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
   });
   return res;
 }

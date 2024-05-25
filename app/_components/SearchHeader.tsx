@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import SearchInput from "./SearchInput";
+import styled from 'styled-components';
+import SearchInput from './SearchInput';
 
 export default function SearchHeader() {
   return (

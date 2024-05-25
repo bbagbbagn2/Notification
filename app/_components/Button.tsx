@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 type ButtonProps = {
-  color?: string;
-  textColor?: string;
   text: string;
   onClick?: () => void;
+  color?: string;
+  textColor?: string;
 };
 
 export default function ButtonComponents({
@@ -24,9 +24,9 @@ export default function ButtonComponents({
 const Button = styled.button`
   padding: 12px;
   border-radius: 6px;
-  border: solid 1px ${(props) => (props.color ? props.color : "#dedede")};
+  border: solid 1px ${(props) => (props.color ? props.color : '#dedede')};
   background-color: ${(props) =>
-    props.color ? props.color : "var(--color-white)"};
+    props.color ? props.color : 'var(--color-white)'};
 `;
 
 const Text = styled.p`
