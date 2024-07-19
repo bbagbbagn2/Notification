@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import Logo from './Logo';
+import colors from '../_styles/theme';
 
 export default function Header() {
   return (
@@ -32,7 +33,7 @@ const HeaderLayout = styled.header`
   position: relative;
   width: 100%;
   height: 56px;
-  background-color: #001e4c;
+  background-color: ${colors.primary};
   z-index: 90;
 `;
 
@@ -59,7 +60,7 @@ const RightContainer = styled.div`
 `;
 
 const Text = styled.p`
-  color: var(--color-white);
+  color: ${colors.primary300};
   font-size: 14px;
   font-weight: 400;
   line-height: 14px;
@@ -84,5 +85,5 @@ const AlarmBedge = styled.div`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #ec5f50;
+  background-color: ${colors.primary300};
 `;
