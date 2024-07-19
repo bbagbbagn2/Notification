@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { fetchPosts } from '@/app/_services/post';
 import PostList from '@/app/_components/PostList';
 import Link from 'next/link';
+import colors from '@/app/_styles/theme';
 
 type PostContainerProps = {
   ApiURL: string;
@@ -32,6 +33,6 @@ const PostContiner = styled.div`
   margin-bottom: 32px;
   width: 100%;
   height: 100%;
-  border-top: 1px solid #dedede;
-  border-bottom: 1px solid #dedede;
+  border-top: 1px solid ${colors.bg300};
+  border-bottom: 1px solid ${colors.bg300};
 `;

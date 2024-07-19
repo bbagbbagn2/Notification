@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 import { formatPostDate } from '@/app/_utils/dateUtils';
 import { Post } from '@/app/_types/Post';
+import colors from '../_styles/theme';
 
 type PostProps = {
   post: Post;
@@ -24,7 +24,8 @@ const List = styled.ul`
   padding: 16px 24px;
 
   &:hover {
-    background-color: #eff0f3;
+    background-color: ${colors.bg200};
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
   }
 `;
 const PostItem = styled.li`
@@ -34,15 +35,15 @@ const PostItem = styled.li`
 `;
 
 const PostHeading = styled.p`
-  color: #222222;
+  color: ${colors.text};
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 23.04px;
   word-wrap: break-word;
 `;
 
 const PostDate = styled.p`
-  color: #707070;
+  color: ${colors.text200};
   font-size: 14px;
   font-weight: 400;
   line-height: 100%;

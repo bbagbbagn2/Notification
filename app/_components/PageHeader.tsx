@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import colors from '../_styles/theme';
 
 export default function PageHeader() {
   return (
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
   height: 40px;
 
   & > p {
-    color: #222;
+    color: ${colors.text};
     font-size: 16px;
     font-weight: 600;
     line-height: 100%;
