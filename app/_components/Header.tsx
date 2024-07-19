@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import Logo from './logo';
+import Logo from './Logo';
 
 export default function Header() {
   return (
