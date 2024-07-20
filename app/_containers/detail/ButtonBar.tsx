@@ -3,16 +3,25 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import ButtonComponents from '@/app/_components/Button';
 import { deleteAnnouncement } from '@/app/_services/announcement';
+import { useRouter } from 'next/navigation';
+import colors from '@/app/_styles/theme';
 
-export default function ButtonBar({ params }: { params: { id: number } }) {
+type ButtonBarProps = {
+  id: number;
+}
+
+export default function ButtonBar({ id }: ButtonBarProps) {
+  const router = useRouter();
+
   async function handleDelete() {
     const shouldDelete = window.confirm('정말 삭제하시겠습니까?');
 
     if (shouldDelete) {
       try {
-        const res = await deleteAnnouncement(params.id);
+        const res = await deleteAnnouncement(id);
+
         if (res.status === 200) {
-          window.location.href = '/';
+          router.push('/');
         }
       } catch (error) {
         console.error(error);
@@ -21,28 +30,28 @@ export default function ButtonBar({ params }: { params: { id: number } }) {
   }
 
   return (
-    <ButtonBox>
+    <ButtonContainer>
       <Link href="/">
-        <ButtonComponents text="목록으로" />
+        <ButtonComponents text="목록으로" textColor={colors.text} />
       </Link>
-      <Link href={`/announcement/edit/${params.id}`}>
+      <Link href={`/announcement/edit/${id}`}>
         <ButtonComponents
           color="#ff5c00"
-          textColor="var(--color-white)"
+          textColor={colors.white}
           text="수정"
         />
       </Link>
       <ButtonComponents
         color="#ff0000"
-        textColor="var(--color-white)"
+        textColor={colors.white}
         text="삭제"
         onClick={() => handleDelete()}
       />
-    </ButtonBox>
+    </ButtonContainer>
   );
 }
 
-const ButtonBox = styled.div`
+const ButtonContainer = styled.div`
   margin-bottom: 64px;
   display: flex;
   align-items: center;

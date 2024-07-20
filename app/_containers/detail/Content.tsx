@@ -1,38 +1,36 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { formatPostDate } from '@/app/_utils/dateUtils';
 import { getAnnouncementById } from '@/app/_services/announcement';
 
 export default function Content({ params }: { params: { id: number } }) {
-  const titleRef = useRef<HTMLParagraphElement | null>(null);
-  const contentRef = useRef<HTMLParagraphElement | null>(null);
-  const dateRef = useRef<HTMLParagraphElement | null>(null);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [date, setDate] = useState('');
 
   useEffect(() => {
     getAnnouncementById(params.id)
       .then((data) => {
-        if (titleRef.current && contentRef.current && dateRef.current) {
-          titleRef.current.innerText = data.title;
-          contentRef.current.innerText = data.content;
-          dateRef.current.innerText = formatPostDate(data.createdAt);
-        }
+        setTitle(data.title);
+        setContent(data.content);
+        setDate(formatPostDate(data.createdAt));
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [params.id]);
 
   return (
     <>
       <TitleBox>
-        <TitleHeading ref={titleRef} />
+        <TitleHeading>{title}</TitleHeading>
       </TitleBox>
       <DateBox>
-        <DateParagraph ref={dateRef} />
+        <DateParagraph>{date}</DateParagraph>
       </DateBox>
-      <ContentBox ref={contentRef} />
+      <ContentBox>{content}</ContentBox>
     </>
   );
 }

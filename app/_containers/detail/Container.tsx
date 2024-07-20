@@ -11,7 +11,7 @@ export default function Container({ params }: { params: { id: number } }) {
     <InnerContainer>
       <PageHeader />
       <Content params={{ id: params.id }} />
-      <ButtonBar params={{ id: params.id }} />
+      <ButtonBar id={params.id} />
     </InnerContainer>
   );
 }

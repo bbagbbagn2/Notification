@@ -4,23 +4,23 @@ import colors from '../_styles/theme';
 
 export default function SearchHeader() {
   return (
-    <TitleBox>
+    <HeaderContainer>
       <div>
-        <TitleHeading>공지사항</TitleHeading>
+        <HeaderTitle>공지사항</HeaderTitle>
       </div>
       <SearchInput />
-    </TitleBox>
+    </HeaderContainer>
   );
 }
 
-const TitleBox = styled.div`
+const HeaderContainer = styled.div`
   margin-top: 60px;
   height: 64px;
   display: flex;
   justify-content: space-between;
 `;
 
-const TitleHeading = styled.h2`
+const HeaderTitle = styled.h2`
   font-size: 32px;
   font-weight: 600;
   line-height: 100%;
