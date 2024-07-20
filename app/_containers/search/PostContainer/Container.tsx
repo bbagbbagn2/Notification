@@ -21,7 +21,7 @@ export default function PostContainer() {
         <PostContiner>
           {data
             .map((post: any) => (
-              <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`}>
+              <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`} key={post.id} >
                 <PostList post={post} />
               </Link>
             ))

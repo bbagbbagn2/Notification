@@ -8,38 +8,36 @@ import { IconSearch } from '@/public/svgs';
 import colors from '../_styles/theme';
 
 export default function SearchInput() {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
 
   const onSearch = (event: FormEvent) => {
     event.preventDefault();
 
-    if (searchQuery.trim() === '') {
-      return;
-    }
+    const query = searchQuery.trim;
 
-    router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+    router.push(`/search${query() ? `?q=${encodeURIComponent(searchQuery)}` : ''}`);
   };
 
   return (
     <form onSubmit={onSearch}>
-      <SearchBox>
-        <Input
+      <SearchContainer>
+        <SearchInputField
           value={searchQuery || ''}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setSearchQuery(event.target.value)
           }
           placeholder="검색어"
         />
-        <SearchButton type="submit">
+        <SearchIconButton type="submit">
           <Image src={IconSearch} alt="Search" width={20} height={20} color={colors.text} />
-        </SearchButton>
-      </SearchBox>
+        </SearchIconButton>
+      </SearchContainer>
     </form>
   );
 }
 
-const SearchBox = styled.div`
+const SearchContainer = styled.div`
   padding: 8px 12px;
   width: 280px;
   height: 40px;
@@ -51,16 +49,12 @@ const SearchBox = styled.div`
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 
-  &:hover {
-    border: 0.8px solid ${colors.bg300};
-  }
-
-  &:active {
+  &:hover, &:active {
     border: 0.8px solid ${colors.bg300};
   }
 `;
 
-const Input = styled.input`
+const SearchInputField = styled.input`
   width: 100%;
   color: ${colors.text};
   font-size: 16px;
@@ -78,7 +72,7 @@ const Input = styled.input`
   }
 `;
 
-const SearchButton = styled.button`
+const SearchIconButton = styled.button`
   border-radius: 100%;
   background-color: ${colors.white};
   padding: 5px;

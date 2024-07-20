@@ -12,15 +12,15 @@ export default function PostList({ post }: PostProps) {
   const formattedDate = formatPostDate(createdAt);
 
   return (
-    <List key={id}>
-      <PostItem>
-        <PostHeading>{title}</PostHeading>
+    <PostListContainer key={id}>
+      <PostListItem>
+        <PostTitle>{title}</PostTitle>
         <PostDate>{formattedDate}</PostDate>
-      </PostItem>
-    </List>
+      </PostListItem>
+    </PostListContainer>
   );
 }
-const List = styled.ul`
+const PostListContainer = styled.ul`
   padding: 16px 24px;
 
   &:hover {
@@ -28,13 +28,14 @@ const List = styled.ul`
     box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
   }
 `;
-const PostItem = styled.li`
+
+const PostListItem = styled.li`
   display: flex;
   flex-direction: column;
   gap: 12px;
 `;
 
-const PostHeading = styled.p`
+const PostTitle = styled.p`
   color: ${colors.text};
   font-size: 16px;
   font-weight: 500;

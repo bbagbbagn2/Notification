@@ -1,25 +1,22 @@
 'use client';
 
 import styled from 'styled-components';
-import { fetchPosts } from '@/app/_services/post';
 import PostList from '@/app/_components/PostList';
 import Link from 'next/link';
 import colors from '@/app/_styles/theme';
 
 type PostContainerProps = {
-  ApiURL: string;
+  posts: any[];
 };
 
 const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
 
-export default async function Home({ ApiURL }: PostContainerProps) {
-  const posts = await fetchPosts(ApiURL);
-
+export default async function Home({ posts }: PostContainerProps) {
   return (
     <PostContiner>
       {posts
         .map((post: any) => (
-          <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`}>
+          <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`} key={post.id}>
             <PostList post={post} />
           </Link>
         ))
