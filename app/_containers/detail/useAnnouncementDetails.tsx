@@ -1,31 +1,30 @@
-import { useEffect, RefObject } from 'react';
+import { useEffect, useState } from 'react';
 import { getAnnouncementById } from '@/app/_services/announcement';
-import { formatPostDate } from '@/app/_utils/dateUtils';
 
-type useAnnouncementDetailsProps = {
-  id: number;
-  titleRef: RefObject<HTMLParagraphElement>;
-  contentRef: RefObject<HTMLParagraphElement>;
-  dateRef: RefObject<HTMLParagraphElement>;
+type DetailData = {
+  title: string;
+  content: string;
+  createdAt: string;
 };
 
-export default function useAnnouncementDetails({
-  id,
-  titleRef,
-  contentRef,
-  dateRef,
-}: useAnnouncementDetailsProps) {
+export function useAnnouncement(id: number) {
+  const [announcement, setAnnouncement] = useState<DetailData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
+    setLoading(true);
     getAnnouncementById(id)
       .then((data) => {
-        if (titleRef.current && contentRef.current && dateRef.current) {
-          titleRef.current.innerText = data.title;
-          contentRef.current.innerText = data.content;
-          dateRef.current.innerText = formatPostDate(data.createdAt);
-        }
+        setAnnouncement(data);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error(error);
+        setError('Failed to fetch announcement');
+        setLoading(false);
+        console.log(error);
       });
-  }, [id, titleRef, contentRef, dateRef]);
+  }, [id]);
+
+  return { announcement, loading, error };
 }
