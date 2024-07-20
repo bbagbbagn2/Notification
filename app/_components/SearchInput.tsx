@@ -14,9 +14,9 @@ export default function SearchInput() {
   const onSearch = (event: FormEvent) => {
     event.preventDefault();
 
-    const query = searchQuery.trim;
+    const query = searchQuery.trim();
 
-    router.push(`/search${query() ? `?q=${encodeURIComponent(searchQuery)}` : ''}`);
+    router.push(`/search${query ? `?q=${encodeURIComponent(searchQuery)}` : ''}`);
   };
 
   return (
