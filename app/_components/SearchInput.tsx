@@ -67,6 +67,10 @@ const SearchInputField = styled.input`
     color: ${colors.text};
   }
 
+  &:focus::placeholder {
+    opacity: 0; // focus 상태에서 placeholder 숨기기
+  }
+  
   &:focus {
     outline: none;
   }
