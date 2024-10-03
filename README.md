@@ -33,6 +33,12 @@ yarn dev
 pnpm dev
 ```
 
+<h2 align="center">
+  <img src="https://github.com/user-attachments/assets/b3935324-5a14-4409-bef7-d91696d4122c" alt="PJH-Portfolio" width="100%">
+</h2>
+
+---
+
 ## Skills used 🔧
 
 - [Next.js](https://nextjs.org/) - React 기반의 SSR 및 정적 사이트 생성 프레임워크
