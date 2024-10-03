@@ -1,6 +1,27 @@
-# Notification
+# Notification 📢
 
-## Getting Started
+## 공지사항을 게시하기 위한 웹 서비스
+
+<h2 align="center">
+  <img src="https://github.com/user-attachments/assets/79bc0430-691e-4bc0-8557-afd37460cbac" alt="Notification" width="600px">
+  <br>
+</h2>
+
+## Key Features
+
+🌟 게시글 작성, 수정 및 삭제\
+🌟 최신순으로 게시글 정렬
+
+---
+
+## Features 👩‍💻
+
+- styled-components를 이용한 스타일 적용
+- Next.js, TypeScript를 이용한 프론트엔드 개발
+- Node.js를 이용한 백엔드 개발
+- Prisma를 사용한 SQLite 데이터베이스 설계, 구축
+
+## Getting Start 🚀
 
 First, run the development server:
 
@@ -12,23 +33,11 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Skills used 🔧
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js](https://nextjs.org/) - React 기반의 SSR 및 정적 사이트 생성 프레임워크
+- [TypeScript](https://www.typescriptlang.org/) - 정적 타입을 제공하는 JavaScript 슈퍼셋
+- [styled-components](https://styled-components.com/) - CSS-in-JS 라이브러리
+- [Prisma](https://www.prisma.io/) - Node.js/TypeScript용 ORM
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
