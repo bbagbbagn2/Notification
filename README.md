@@ -1,4 +1,4 @@
-# Notification 📢
+# Notification 📄
 
 ## 공지사항을 게시하기 위한 웹 서비스
 
