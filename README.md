@@ -1,6 +1,6 @@
 # Notification 📄
 
-## 공지사항을 게시하기 위한 웹 서비스
+## 사용자들이 손쉽게 공지사항을 작성, 수정, 삭제할 수 있는 웹 서비스
 
 <h2 align="center">
   <img src="https://github.com/user-attachments/assets/79bc0430-691e-4bc0-8557-afd37460cbac" alt="Notification" width="600px">
