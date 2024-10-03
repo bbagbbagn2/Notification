@@ -26,11 +26,14 @@
 First, run the development server:
 
 ```bash
+# Clone the repository
+$ https://github.com/bbagbbagn2/Notification.git
+
+# Install dependencies
+$ npm install
+
+# Start a local dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 <h2 align="center">
