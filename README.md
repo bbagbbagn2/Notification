@@ -42,7 +42,7 @@ npm run dev
 
 ---
 
-## Skills used 🔧
+## Technologies used 🔧
 
 - [Next.js](https://nextjs.org/) - React 기반의 SSR 및 정적 사이트 생성 프레임워크
 - [TypeScript](https://www.typescriptlang.org/) - 정적 타입을 제공하는 JavaScript 슈퍼셋
