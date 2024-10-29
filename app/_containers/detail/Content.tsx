@@ -13,11 +13,11 @@ export default function Content({ id }: ContentProps) {
   const { announcement, loading, error } = useAnnouncement(id);
 
   if (loading) {
-    return <p>Loading...</p>
+    return <p>Loading...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>
+    return <p>{error}</p>;
   }
 
   return (

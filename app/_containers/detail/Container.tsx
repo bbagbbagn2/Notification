@@ -5,7 +5,6 @@ import Content from '@/app/_containers/detail/Content';
 import PageHeader from '../../_components/PageHeader';
 
 export default function Container({ params }: { params: { id: number } }) {
-
   console.log(params);
 
   return (

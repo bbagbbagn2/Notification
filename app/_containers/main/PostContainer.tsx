@@ -1,31 +1,40 @@
-'use client';
-
 import styled from 'styled-components';
 import PostList from '@/app/_components/PostList';
 import Link from 'next/link';
+import { Post } from '@/app/_types/Post';
 import colors from '@/app/_styles/theme';
 
-type PostContainerProps = {
-  posts: any[];
-};
-
 const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
+const ANNOUNCEMENT_API_URL = '/api/announcement/route';
+
+export async function getServerSideProps() {
+  const res = await fetch(`${ANNOUNCEMENT_API_URL}`);
+  const { posts } = await res.json();
+
+  return {
+    props: { posts },
+  };
+}
+
+type PostContainerProps = {
+  posts: Post[];
+};
 
 export default async function Home({ posts }: PostContainerProps) {
   return (
-    <PostContiner>
+    <PostContainer>
       {posts
-        .map((post: any) => (
+        .map((post: Post) => (
           <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`} key={post.id}>
             <PostList post={post} />
           </Link>
         ))
         .reverse()}
-    </PostContiner>
+    </PostContainer>
   );
 }
 
-const PostContiner = styled.div`
+const PostContainer = styled.div`
   margin-top: 12px;
   margin-bottom: 32px;
   width: 100%;
