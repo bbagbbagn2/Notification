@@ -7,37 +7,25 @@ import colors from '../_styles/theme';
 type PostProps = {
   post: Post;
 };
-const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
 
-export default function PostList({ post }: PostProps) {
+export default function PostItem({ post }: PostProps) {
   const { id, title, createdAt } = post;
   const formattedDate = formatPostDate(createdAt);
 
   return (
-    <PostListContainer>
-      <Link href={`${ANNOUNCEMENT_DETAIL_URL}${id}`} key={id}>
-        <PostListItem>
-          <PostTitle>{title}</PostTitle>
-          <PostDate>{formattedDate}</PostDate>
-        </PostListItem>
-      </Link>
-    </PostListContainer>
+      <PostItemContainer>
+        <Link href={`/post/${id}`}>
+        <PostTitle>{title}</PostTitle>
+        <PostDate>{formattedDate}</PostDate>
+        </Link>
+      </PostItemContainer>
   );
 }
-const PostListContainer = styled.div`
-  padding: 16px 24px;
 
-  &:hover {
-    background-color: ${colors.bg200};
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
-  }
-`;
-
-const PostListItem = styled.div`
+const PostItemContainer = styled.li`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  text-decoration: none;
 `;
 
 const PostTitle = styled.p`

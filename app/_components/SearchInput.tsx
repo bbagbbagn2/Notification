@@ -13,24 +13,29 @@ export default function SearchInput() {
 
   const onSearch = (event: FormEvent) => {
     event.preventDefault();
-
     const query = searchQuery.trim();
 
-    router.push(`/search${query ? `?q=${encodeURIComponent(searchQuery)}` : ''}`);
+    router.push(
+      `/search${query ? `?q=${encodeURIComponent(searchQuery)}` : ''}`,
+    );
   };
 
   return (
     <form onSubmit={onSearch}>
       <SearchContainer>
         <SearchInputField
-          value={searchQuery || ''}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setSearchQuery(event.target.value)
-          }
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
           placeholder="검색어"
         />
         <SearchIconButton type="submit">
-          <Image src={IconSearch} alt="Search" width={20} height={20} color={colors.text} />
+          <Image
+            src={IconSearch}
+            alt="Search"
+            width={20}
+            height={20}
+            color={colors.text}
+          />
         </SearchIconButton>
       </SearchContainer>
     </form>
@@ -49,7 +54,7 @@ const SearchContainer = styled.div`
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 
-  &:hover, &:active {
+  &:hover {
     border: 0.8px solid ${colors.bg300};
   }
 `;
@@ -70,7 +75,7 @@ const SearchInputField = styled.input`
   &:focus::placeholder {
     opacity: 0; // focus 상태에서 placeholder 숨기기
   }
-  
+
   &:focus {
     outline: none;
   }
@@ -83,5 +88,7 @@ const SearchIconButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 `;

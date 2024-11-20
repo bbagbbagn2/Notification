@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import PostList from '@/app/_components/PostList';
-import Link from 'next/link';
 import colors from '@/app/_styles/theme';
 
-const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
-const API_ANNOUNCEMENT_URL = '/api/announcement/route';
+const API_POST_URL = '/api/post/route';
 
 export async function getServerSideProps() {
-  const res = await fetch(`${API_ANNOUNCEMENT_URL}`);
+  const res = await fetch(`${API_POST_URL}`);
   const { posts } = await res.json();
   return {
     props: { posts },
@@ -22,11 +20,7 @@ export default async function Home({ posts }: PostContainerProps) {
   return (
     <PostContiner>
       {posts
-        .map((post: any) => (
-          <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`} key={post.id}>
-            <PostList post={post} />
-          </Link>
-        ))
+        .map((post: any) => <PostList post={post} key={post.id} />)
         .reverse()}
     </PostContiner>
   );
