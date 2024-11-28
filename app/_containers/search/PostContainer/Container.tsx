@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import usePostData from './usePostData';
-import Empty from '@/app/_components/emptyContainer';
+import Empty from '@/app/_components/EmptyContainer';
 import PostList from '@/app/_components/PostList';
 
 const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
