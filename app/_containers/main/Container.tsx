@@ -11,16 +11,6 @@ type ContainerProps = {
   ApiURL: string;
 };
 
-const API_POST_URL = '/api/post/route';
-
-export async function getServerSideProps() {
-  const res = await fetch(`${API_POST_URL}`);
-  const { posts } = await res.json();
-  return {
-    props: { posts },
-  };
-}
-
 export default async function MainContainer({ ApiURL }: ContainerProps) {
   const posts = await fetchPosts(ApiURL);
 
