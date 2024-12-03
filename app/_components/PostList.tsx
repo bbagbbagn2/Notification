@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import Link from 'next/link';
 import { formatPostDate } from '@/app/_utils/dateUtils';
@@ -7,7 +9,8 @@ import colors from '../_styles/theme';
 type PostProps = {
   post: Post;
 };
-const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
+
+const POST_DETAIL_URL = '/post/';
 
 export default function PostList({ post }: PostProps) {
   const { id, title, createdAt } = post;
@@ -15,7 +18,7 @@ export default function PostList({ post }: PostProps) {
 
   return (
     <PostListContainer>
-      <Link href={`${ANNOUNCEMENT_DETAIL_URL}${id}`} key={id}>
+      <Link href={`${POST_DETAIL_URL}${id}`} key={id}>
         <PostListItem>
           <PostTitle>{title}</PostTitle>
           <PostDate>{formattedDate}</PostDate>
