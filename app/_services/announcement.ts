@@ -1,7 +1,7 @@
-const ANNOUNCEMENT_API_URL = '/api/announcement/';
+const POST_API_URL = '/api/post/';
 
-async function getAnnouncementById(id: number) {
-  const res = await fetch(`${ANNOUNCEMENT_API_URL}${id}`);
+async function getPostById(id: number) {
+  const res = await fetch(`${POST_API_URL}${id}`);
   if (!res.ok) {
     throw new Error('Announcement 정보를 가져오는 데 실패했습니다.');
   }
@@ -10,7 +10,7 @@ async function getAnnouncementById(id: number) {
 }
 
 async function deleteAnnouncement(id: number) {
-  const res = await fetch(`${ANNOUNCEMENT_API_URL}${id}`, {
+  const res = await fetch(`${POST_API_URL}${id}`, {
     method: 'DELETE',
   });
   if (!res.ok) {
@@ -19,4 +19,4 @@ async function deleteAnnouncement(id: number) {
   return res;
 }
 
-export { getAnnouncementById, deleteAnnouncement };
+export { getPostById, deleteAnnouncement };

@@ -5,7 +5,7 @@ import { Post } from '@/app/_types/Post';
 
 const SEARCH_API_URL = '/api/search';
 
-const buildApiUrl = (query: string) => `${SEARCH_API_URL}?q=${encodeURIComponent(query)}`;
+const buildSearchApiUrl = (query: string) => `${SEARCH_API_URL}?q=${encodeURIComponent(query)}`;
 
 
 export default function usePostData() {
@@ -13,12 +13,12 @@ export default function usePostData() {
   const searchQuery = search?.get('q') || '';
 
   const { data, error, isValidating } = useSWR<Post[]>(
-    buildApiUrl(searchQuery),
+    buildSearchApiUrl(searchQuery),
     fetchPosts,
   );
 
   return {
-    data,
+    posts: data,
     error,
     isLoading: isValidating,
   };

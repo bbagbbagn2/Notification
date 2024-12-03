@@ -9,28 +9,22 @@ import PostList from '@/app/_components/PostList';
 const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
 
 export default function PostContainer() {
-  const { data, isLoading } = usePostData();
+  const { posts, isLoading } = usePostData();
 
-  if (!data) {
-    return null;
+  if (!posts || posts.length === 0) {
+    return <Empty />;
   }
 
   return (
-    <>
-      {data.length > 0 ? (
-        <PostContiner>
-          {data
-            .map((post: any) => (
-              <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`} key={post.id} >
-                <PostList post={post} />
-              </Link>
-            ))
-            .reverse()}
-        </PostContiner>
-      ) : (
-        <Empty />
-      )}
-    </>
+    <PostContiner>
+      {posts
+        .map((post: any) => (
+          <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`} key={post.id}>
+            <PostList post={post} />
+          </Link>
+        ))
+        .reverse()}
+    </PostContiner>
   );
 }
 

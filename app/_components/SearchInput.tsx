@@ -18,6 +18,8 @@ export default function SearchInput() {
     router.push(
       `/search${query ? `?q=${encodeURIComponent(searchQuery)}` : ''}`,
     );
+
+  
   };
 
   return (

@@ -8,11 +8,11 @@ type InnerContainerProps = {
 
 export default function InnerContainer({
   children,
-  paddingBottom,
+  paddingBottom = '0',
 }: InnerContainerProps) {
   return (
     <Layout>
-      <Container paddingBottom={paddingBottom}>{children}</Container>
+      <Container $paddingBottom={paddingBottom}>{children}</Container>
     </Layout>
   );
 }
@@ -23,7 +23,7 @@ const Layout = styled.div`
   background-color: var(--color-white);
 `;
 
-const Container = styled.div<InnerContainerProps>`
+const Container = styled.div<{ $paddingBottom: string }>`
   padding-inline: 14.285%;
-  padding-bottom: ${(props) => props.paddingBottom};
+  padding-bottom: ${(props) => props.$paddingBottom || '0'};
 `;

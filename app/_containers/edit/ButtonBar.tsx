@@ -2,28 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import ButtonComponents from '@/app/_components/Button';
-
-const API_EDIT_URL = `/api/announcement`;
-
-const updateAnnouncement = async (data: {
-  id: number;
-  title: string;
-  content: string;
-}) => {
-  const res = await fetch(`${API_EDIT_URL}/${data.id}`, {
-    method: 'PUT',
-    body: JSON.stringify({ title: data.title, content: data.content }),
-    //@ts-ignore
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  const responseJson = await res.json();
-  
-  console.log(responseJson);
-  return responseJson;
-};
+import { updatePost } from '@/app/_services/postService';
 
 interface ButtonProps {
   id: number;
@@ -38,9 +17,14 @@ export default function ButtonBar({ id, title, content }: ButtonProps) {
     router.back();
   }
 
-  // 제목을 가져와서 업데이트
-  function handleSave() {
-    updateAnnouncement({ id, title, content: content });
+  async function handleSave() {
+    try {
+      const updatedPost = await updatePost(id, title, content);
+      console.log('Post updated successfully:', updatedPost);
+      router.back();
+    } catch (error) {
+      console.error('Error saving post:', error);
+    }
   }
 
   return (

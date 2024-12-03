@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
-import { getAllPosts, createPost } from '@/app/_services/postService';
+import { NextRequest, NextResponse } from 'next/server';
+import prisma from '@/app/lib/prisma';
 
 // 게시물 전체 조회
 export const GET = async () => {
   try {
-    const posts = await getAllPosts();
+    const posts = await prisma.post.findMany();
 
     if (posts.length === 0) {
       return NextResponse.json({ message: 'No posts found' }, { status: 404 });
@@ -17,7 +17,7 @@ export const GET = async () => {
 };
 
 // 게시물 생성
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   try {
     const { title, content } = await req.json();
 
@@ -28,7 +28,9 @@ export const POST = async (req: Request) => {
       );
     }
 
-    const newPost = await createPost(title, content);
+    const newPost = await prisma.post.create({
+      data: { title, content },
+    });
 
     return NextResponse.json(
       { message: 'Post created successfully', post: newPost },

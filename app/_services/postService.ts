@@ -19,6 +19,15 @@ export const getPostById = async (id: number) => {
   });
 };
 
+// 게시글 수정
+export const updatePost = async (id: number, title: string, content: string) => {
+  const post = await prisma.post.update({
+    where: { id },
+    data: { title, content },
+  });
+  return post;
+};
+
 // 게시글 삭제
 export const deletePost = async (id: number) => {
   return await prisma.post.delete({

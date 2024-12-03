@@ -8,7 +8,7 @@ export default function Container({ params }: { params: { id: number } }) {
   console.log(params);
 
   return (
-    <InnerContainer>
+    <InnerContainer paddingBottom="0">
       <PageHeader />
       <Content id={params.id} />
       <ButtonBar id={params.id} />

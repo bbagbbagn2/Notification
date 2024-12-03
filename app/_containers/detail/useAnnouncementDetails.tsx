@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAnnouncementById } from '@/app/_services/announcement';
+import { getPostById } from '@/app/_services/announcement';
 
 type DetailData = {
   title: string;
@@ -23,7 +23,7 @@ export function useAnnouncement(id: number) {
       setState((prev) => ({ ...prev, loading: true, error: null }));
 
       try {
-        const data = await getAnnouncementById(id);
+        const data = await getPostById(id);
         setState({ announcement: data, loading: false, error: null });
       } catch (err) {
         console.error('Failed to fetch announcement:', err);

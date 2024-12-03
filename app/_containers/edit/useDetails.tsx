@@ -1,5 +1,5 @@
 import { useEffect, RefObject } from 'react';
-import { getAnnouncementById } from '@/app/_services/announcement';
+import { getPostById } from '@/app/_services/postService';
 import { formatPostDate } from '@/app/_utils/dateUtils';
 
 type useDetailsProps = {
@@ -16,16 +16,33 @@ export default function useAnnouncementDetails({
   dateRef,
 }: useDetailsProps) {
   useEffect(() => {
-    getAnnouncementById(id)
-      .then((data) => {
-        if (titleRef.current && contentRef.current && dateRef.current) {
-          titleRef.current.innerText = data.title;
-          contentRef.current.innerText = data.content;
-          dateRef.current.innerText = formatPostDate(data.createdAt);
+    const fetchPostDetails = async () => {
+      try {
+        const data = await getPostById(id);
+        if (data) {
+          updateRefs({
+            ...data,
+            createdAt: formatPostDate(data.createdAt),
+          });
+        } else {
+          console.error('Post not found');
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [id, titleRef, contentRef, dateRef]);
+      } catch (error) {
+        console.error('Error fetching post details:', error);
+      }
+    };
+
+    fetchPostDetails();
+  }, [id]);
+  
+  const updateRefs = (data: {
+    title: string;
+    content: string;
+    createdAt: string;
+  }) => {
+    if (titleRef.current) titleRef.current.innerText = data.title;
+    if (contentRef.current) contentRef.current.innerText = data.content;
+    if (dateRef.current)
+      dateRef.current.innerText = formatPostDate(data.createdAt);
+  };
 }
