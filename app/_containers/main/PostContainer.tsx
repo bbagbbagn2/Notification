@@ -1,32 +1,27 @@
+'use client';
+
 import styled from 'styled-components';
 import PostList from '@/app/_components/PostList';
 import colors from '@/app/_styles/theme';
-
-const API_POST_URL = '/api/post/route';
-
-export async function getServerSideProps() {
-  const res = await fetch(`${API_POST_URL}`);
-  const { posts } = await res.json();
-  return {
-    props: { posts },
-  };
-}
+import { fetchPosts } from '@/app/_services/post';
 
 type PostContainerProps = {
-  posts: any[];
+  ApiURL: string;
 };
 
-export default async function Home({ posts }: PostContainerProps) {
+export default async function PostContainer({ ApiURL }: PostContainerProps) {
+  const posts = await fetchPosts(ApiURL);
+
   return (
-    <PostContiner>
+    <Container>
       {posts
         .map((post: any) => <PostList post={post} key={post.id} />)
         .reverse()}
-    </PostContiner>
+    </Container>
   );
 }
 
-const PostContiner = styled.div`
+const Container = styled.div`
   margin-top: 12px;
   margin-bottom: 32px;
   width: 100%;

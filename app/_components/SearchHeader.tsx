@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import SearchInput from './SearchInput';
 import colors from '../_styles/theme';
