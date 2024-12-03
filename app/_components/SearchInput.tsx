@@ -16,7 +16,7 @@ export default function SearchInput() {
     const query = searchQuery.trim();
 
     router.push(
-      `/search${query ? `?q=${encodeURIComponent(searchQuery)}` : ''}`,
+      `/search/${query ? `?q=${encodeURIComponent(searchQuery)}` : ''}`,
     );
 
   

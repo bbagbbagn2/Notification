@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { useAnnouncement } from './useAnnouncementDetails';
+import { usePost } from './usePost';
 import colors from '@/app/_styles/theme';
 
 type ContentProps = {
@@ -10,7 +10,7 @@ type ContentProps = {
 };
 
 export default function Content({ id }: ContentProps) {
-  const { announcement, loading, error } = useAnnouncement(id);
+  const { post, loading, error } = usePost(id);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -23,12 +23,12 @@ export default function Content({ id }: ContentProps) {
   return (
     <>
       <TitleContainer>
-        <Title>{announcement?.title}</Title>
+        <Title>{post?.title}</Title>
       </TitleContainer>
       <DateContainer>
-        <DateTitle>{announcement?.createdAt}</DateTitle>
+        <DateTitle>{post?.createdAt}</DateTitle>
       </DateContainer>
-      <ContentContainer>{announcement?.content}</ContentContainer>
+      <ContentContainer>{post?.content}</ContentContainer>
     </>
   );
 }

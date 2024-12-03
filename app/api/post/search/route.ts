@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/app/lib/prisma';
 
+// 제목 검색 기능
 export const GET = async (req: NextRequest) => {
   const query = req.nextUrl.searchParams.get('q') || '';
 

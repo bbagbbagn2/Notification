@@ -1,12 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import styled from 'styled-components';
 import usePostData from './usePostData';
 import Empty from '@/app/_components/EmptyContainer';
 import PostList from '@/app/_components/PostList';
-
-const ANNOUNCEMENT_DETAIL_URL = '/announcement/detail/';
 
 export default function PostContainer() {
   const { posts, isLoading } = usePostData();
@@ -18,11 +15,7 @@ export default function PostContainer() {
   return (
     <PostContiner>
       {posts
-        .map((post: any) => (
-          <Link href={`${ANNOUNCEMENT_DETAIL_URL}${post.id}`} key={post.id}>
-            <PostList post={post} />
-          </Link>
-        ))
+        .map((post: any) => <PostList post={post} key={post.id} />)
         .reverse()}
     </PostContiner>
   );

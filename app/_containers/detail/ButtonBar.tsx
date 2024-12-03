@@ -1,14 +1,16 @@
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import ButtonComponents from '@/app/_components/Button';
-import { deleteAnnouncement } from '@/app/_services/announcement';
+import { deletePost } from '@/app/_services/announcement';
 import colors from '@/app/_styles/theme';
 
 type ButtonBarProps = {
   id: number;
-}
+};
 
 export default function ButtonBar({ id }: ButtonBarProps) {
   const router = useRouter();
@@ -18,7 +20,7 @@ export default function ButtonBar({ id }: ButtonBarProps) {
 
     if (shouldDelete) {
       try {
-        const res = await deleteAnnouncement(id);
+        const res = await deletePost(id);
 
         if (res.status === 200) {
           router.push('/');
