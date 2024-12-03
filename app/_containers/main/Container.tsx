@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import InnerContainer from '@/app/_components/innerContainer';
 import SearchHeader from '@/app/_components/SearchHeader';
