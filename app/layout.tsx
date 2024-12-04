@@ -1,18 +1,14 @@
-'use client';
+import StyledJsxRegistry from './lib/registry';
 
-import StyledComponentsRegistry from './lib/registry';
-import GlobalStyles from './_styles/GlobalStyle';
-import Header from './_components/Header';
-
-export default function RootLayout(props: React.PropsWithChildren) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html>
       <body>
-        <StyledComponentsRegistry>
-          <GlobalStyles />
-          <Header />
-          {props.children}
-        </StyledComponentsRegistry>
+        <StyledJsxRegistry>{children}</StyledJsxRegistry>
       </body>
     </html>
   );
