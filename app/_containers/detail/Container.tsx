@@ -1,5 +1,3 @@
-'use client';
-
 import InnerContainer from '@/app/_components/innerContainer';
 import ButtonBar from '@/app/_containers/detail/ButtonBar';
 import Content from '@/app/_containers/detail/Content';

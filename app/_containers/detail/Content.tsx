@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 import { usePost } from './usePost';
 import colors from '@/app/_styles/theme';
+import { formatPostDate } from '@/app/_utils/dateUtils';
 
 type ContentProps = {
   id: number;
@@ -10,7 +11,6 @@ type ContentProps = {
 
 export default function Content({ id }: ContentProps) {
   const { post, loading, error } = usePost(id);
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -25,7 +25,9 @@ export default function Content({ id }: ContentProps) {
         <Title>{post?.title}</Title>
       </TitleContainer>
       <DateContainer>
-        <DateTitle>{post?.createdAt}</DateTitle>
+        <DateTitle>
+          {post?.createdAt ? formatPostDate(post.createdAt) : ''}
+        </DateTitle>
       </DateContainer>
       <ContentContainer>{post?.content}</ContentContainer>
     </>

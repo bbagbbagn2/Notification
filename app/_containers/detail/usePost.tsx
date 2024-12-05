@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getPostById } from '@/app/_services/announcement';
-
-type PostData = {
-  title: string;
-  content: string;
-  createdAt: string;
-};
+import { Post } from '@prisma/client';
 
 type UsePostState = {
-  post: PostData | null;
+  post: Post | null;
   loading: boolean;
   error: string | null;
 };
