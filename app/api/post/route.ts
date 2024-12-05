@@ -29,11 +29,11 @@ export const POST = async (req: NextRequest) => {
     }
 
     const newPost = await prisma.post.create({
-      data: { title, content },
+      data: { title: title, content: content },
     });
 
     return NextResponse.json(
-      { message: 'Post created successfully', post: newPost },
+      { message: 'Post created successfully', newPost },
       { status: 201 },
     );
   } catch (error) {

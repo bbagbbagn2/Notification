@@ -47,7 +47,7 @@ export const PUT = async (
     });
 
     return NextResponse.json(
-      { message: 'Success', post: updatedPost },
+      { message: 'Success', updatedPost },
       { status: 200 },
     );
   } catch (error) {
