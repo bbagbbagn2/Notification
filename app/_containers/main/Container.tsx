@@ -1,16 +1,24 @@
 import InnerContainer from '@/app/_components/innerContainer';
 import SearchHeader from '@/app/_components/SearchHeader';
 import PostContainer from './PostContainer';
+import PostList from '@/app/_components/PostList';
+import { fetchPosts } from '@/app/_services/post';
 
 type ContainerProps = {
   ApiURL: string;
 };
 
-export default function MainContainer({ ApiURL }: ContainerProps) {
+export default async function MainContainer({ ApiURL }: ContainerProps) {
+  const posts = await fetchPosts(ApiURL);
+
   return (
     <InnerContainer>
       <SearchHeader />
-      <PostContainer ApiURL={ApiURL} />
+      <PostContainer>
+      {posts
+        .map((post: any) => <PostList post={post} key={post.id} />)
+        .reverse()}
+        </PostContainer>
     </InnerContainer>
   );
 }

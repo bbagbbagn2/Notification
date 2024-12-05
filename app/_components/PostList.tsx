@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { formatPostDate } from '@/app/_utils/dateUtils';
-import { Post } from '@/app/_types/Post';
+import { Post } from '@prisma/client';
 import colors from '../_styles/theme';
 
 type PostProps = {

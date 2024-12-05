@@ -2,7 +2,7 @@ const ONE_MINUTE = 60;
 const ONE_HOUR = 3600;
 const ONE_DAY = 86400;
 
-export function formatPostDate(postDate: string): string {
+export function formatPostDate(postDate: Date): string {
   const currentDate = new Date();
   const date = new Date(postDate);
   const elapsedMilliseconds = currentDate.getTime() - date.getTime();

@@ -1,24 +1,15 @@
 'use client';
 
 import styled from 'styled-components';
-import PostList from '@/app/_components/PostList';
 import colors from '@/app/_styles/theme';
-import { fetchPosts } from '@/app/_services/post';
+import { ReactNode } from 'react';
 
 type PostContainerProps = {
-  ApiURL: string;
+  children: ReactNode;
 };
 
-export default async function PostContainer({ ApiURL }: PostContainerProps) {
-  const posts = await fetchPosts(ApiURL);
-
-  return (
-    <Container>
-      {posts
-        .map((post: any) => <PostList post={post} key={post.id} />)
-        .reverse()}
-    </Container>
-  );
+export default function PostContainer({ children }: PostContainerProps) {
+  return <Container>{children}</Container>;
 }
 
 const Container = styled.div`
