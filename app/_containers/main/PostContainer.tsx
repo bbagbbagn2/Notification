@@ -1,8 +1,8 @@
 'use client';
 
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 import colors from '@/app/_styles/theme';
-import { ReactNode } from 'react';
 
 type PostContainerProps = {
   children: ReactNode;

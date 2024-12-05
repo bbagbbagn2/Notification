@@ -1,24 +1,22 @@
+import prisma from '@/app/lib/prisma';
 import InnerContainer from '@/app/_components/innerContainer';
 import SearchHeader from '@/app/_components/SearchHeader';
 import PostContainer from './PostContainer';
 import PostList from '@/app/_components/PostList';
-import { fetchPosts } from '@/app/_services/post';
 
-type ContainerProps = {
-  ApiURL: string;
-};
-
-export default async function MainContainer({ ApiURL }: ContainerProps) {
-  const posts = await fetchPosts(ApiURL);
+export default async function MainContainer() {
+  const posts = await prisma.post.findMany({
+    orderBy: [{ createdAt: 'desc' }],
+  });
 
   return (
     <InnerContainer>
       <SearchHeader />
       <PostContainer>
-      {posts
-        .map((post: any) => <PostList post={post} key={post.id} />)
-        .reverse()}
-        </PostContainer>
+        {posts.map((post: any) => (
+          <PostList post={post} key={post.id} />
+        ))}
+      </PostContainer>
     </InnerContainer>
   );
 }
