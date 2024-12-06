@@ -11,6 +11,7 @@ type ContentProps = {
 
 export default function Content({ id }: ContentProps) {
   const { post, loading, error } = usePost(id);
+
   if (loading) {
     return <p>Loading...</p>;
   }
