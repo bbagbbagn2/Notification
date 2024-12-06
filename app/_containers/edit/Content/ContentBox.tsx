@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ChangeEvent, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useFetchData } from '../useFetchData';
 
@@ -10,24 +10,28 @@ type ContentWrapperProps = {
   };
 };
 
+const POST_API_URL = `${process.env.NEXT_PUBLIC_FE_URL}/api/post/`;
+
 export default function ContentWrapper({ params }: ContentWrapperProps) {
-  const contentRef = useFetchData(params.id, (data) => {
-    if (contentRef.current) {
-      contentRef.current.value = data.content;
-      adjustTextAreaHeight(contentRef.current);
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(`${POST_API_URL}${params.id}`);
+
+      const data = await res.json();
+      setContent(data.post.content);
     }
-  });
 
-  function adjustTextAreaHeight(textarea: HTMLTextAreaElement) {
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  }
+    fetchData();
+  }, [params.id]);
 
-  function handleInputChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    adjustTextAreaHeight(event.target);
-  }
-
-  return <ContentTextarea ref={contentRef} onChange={handleInputChange} />;
+  return (
+    <ContentTextarea
+      defaultValue={content}
+      onChange={(e) => setContent(e.target.value)}
+    />
+  );
 }
 
 const ContentTextarea = styled.textarea`

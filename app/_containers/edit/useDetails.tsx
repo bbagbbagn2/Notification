@@ -34,11 +34,11 @@ export default function useAnnouncementDetails({
 
     fetchPostDetails();
   }, [id]);
-  
+
   const updateRefs = (data: {
     title: string;
     content: string;
-    createdAt: string;
+    createdAt: Date;
   }) => {
     if (titleRef.current) titleRef.current.innerText = data.title;
     if (contentRef.current) contentRef.current.innerText = data.content;

@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useFetchData } from '../useFetchData';
 
 type TitleWrapperProps = {
   params: {
@@ -10,27 +9,24 @@ type TitleWrapperProps = {
   };
 };
 
+const POST_API_URL = `${process.env.NEXT_PUBLIC_FE_URL}/api/post/`;
+
 export default function TitleWrapper({ params }: TitleWrapperProps) {
-  const titleRef = useFetchData(params.id, (data) => {
-    if (titleRef.current) {
-      titleRef.current.value = data.title;
-      adjustTextAreaHeight();
-    }
-  });
+  const [title, setTitle] = useState('');
 
-  function adjustTextAreaHeight() {
-    if (titleRef.current) {
-      titleRef.current.style.height = 'auto';
-      titleRef.current.style.height = `${titleRef.current.scrollHeight}px`;
-    }
-  }
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(`${POST_API_URL}${params.id}`);
 
-  function handleInputChange() {
-    adjustTextAreaHeight();
-  }
+      const data = await res.json();
+      setTitle(data.post.title);
+    }
+
+    fetchData();
+  }, [params.id]);
 
   return (
-    <TitleBox id="title" rows={1} ref={titleRef} onChange={handleInputChange} />
+    <TitleBox defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
   );
 }
 

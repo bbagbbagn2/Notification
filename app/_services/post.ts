@@ -1,9 +1,6 @@
-import { Post } from '@/app/_types/Post';
-
-async function fetchPosts(url: string): Promise<Post[]> {
+async function fetchPosts(url: string) {
   const res = await fetch(url);
-  const data = await res.json();
-  return data.posts || [];
+  return res.json();
 }
 
 export { fetchPosts };

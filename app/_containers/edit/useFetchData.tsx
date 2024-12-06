@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { getAnnouncementById } from '@/app/_services/announcement';
-import { getPostById } from '@/app/_services/postService';
 import { Post } from '@prisma/client';
+
+const DETAIL_API_URL = `${process.env.NEXT_PUBLIC_FE_URL}/api/post/`;
 
 export function useFetchData(id: number, callback: (data: Post) => void) {
   const ref = useRef<HTMLTextAreaElement | null>(null);
@@ -9,8 +9,14 @@ export function useFetchData(id: number, callback: (data: Post) => void) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getPostById(id);
-        
+        const res = await fetch(`${DETAIL_API_URL}${id}`);
+
+        if (!res.ok) {
+          throw new Error('Failed to fetch post data');
+        }
+
+        const data = await res.json();
+
         if (data === null) {
           // 데이터가 null일 경우 처리할 로직을 작성합니다.
           console.error('Post not found');

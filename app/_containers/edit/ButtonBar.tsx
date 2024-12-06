@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import ButtonComponents from '@/app/_components/Button';
-import { updatePost } from '@/app/_services/postService';
+import { handlePost } from '@/app/_services/announcement';
 
 interface ButtonProps {
   id: number;
@@ -19,7 +19,7 @@ export default function ButtonBar({ id, title, content }: ButtonProps) {
 
   async function handleSave() {
     try {
-      const updatedPost = await updatePost(id, title, content);
+      const updatedPost = await handlePost(id, title, content);
       console.log('Post updated successfully:', updatedPost);
       router.back();
     } catch (error) {

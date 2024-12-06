@@ -23,4 +23,17 @@ async function deletePost(id: number) {
   return res.json();
 }
 
-export { getPostById, deletePost };
+async function handlePost(id: number, title: string, content: string) {
+  const options = { method: 'PUT', body: JSON.stringify({ title, content }) };
+  const res = await fetch(`${POST_API_URL}${id}`, options);
+
+  console.log(res);
+  
+  if (!res.ok) {
+    throw new Error('Post 수정에 실패했습니다.');
+  }
+
+  return res.json();
+}
+
+export { getPostById, deletePost, handlePost };
