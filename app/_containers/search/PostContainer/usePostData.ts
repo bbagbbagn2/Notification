@@ -1,12 +1,12 @@
-import { useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
+import { useSearchParams } from 'next/navigation';
 import { fetchPosts } from '@/app/_services/post';
 import { Post } from '@/app/_types/Post';
 
-const SEARCH_API_URL = '/api/post/search';
+const SEARCH_API_URL = `${process.env.NEXT_PUBLIC_FE_URL}/api/post/search`;
 
-const buildSearchApiUrl = (query: string) => `${SEARCH_API_URL}?q=${encodeURIComponent(query)}`;
-
+const buildSearchApiUrl = (query: string) =>
+  `${SEARCH_API_URL}?q=${encodeURIComponent(query)}`;
 
 export default function usePostData() {
   const search = useSearchParams();
