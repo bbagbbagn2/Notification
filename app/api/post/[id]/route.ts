@@ -63,11 +63,9 @@ export const DELETE = async (
   try {
     const requestedId = parseInt(params.id);
 
-    const post = await prisma.post.findUnique({
+    const post = await prisma.post.delete({
       where: { id: requestedId },
     });
-
-    await prisma.post.delete({ where: { id: requestedId } });
 
     return NextResponse.json({ message: 'Success', post }, { status: 200 });
   } catch (error) {

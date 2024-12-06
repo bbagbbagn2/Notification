@@ -21,8 +21,9 @@ export default function ButtonBar({ id }: ButtonBarProps) {
       try {
         const res = await deletePost(id);
 
-        if (res.status === 200) {
+        if (res.message === 'Success') {
           router.push('/');
+          router.refresh();
         }
       } catch (error) {
         console.error(error);

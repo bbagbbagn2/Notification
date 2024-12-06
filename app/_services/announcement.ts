@@ -1,4 +1,4 @@
-const POST_API_URL = '/api/post/';
+const POST_API_URL = `${process.env.NEXT_PUBLIC_FE_URL}/api/post/`;
 
 async function getPostById(id: number) {
   const res = await fetch(`${POST_API_URL}${id}`);
@@ -12,16 +12,15 @@ async function getPostById(id: number) {
 }
 
 async function deletePost(id: number) {
-  const res = await fetch(`${POST_API_URL}${id}`, {
-    method: 'DELETE',
-  });
+  const options = { method: 'DELETE' };
+  const res = await fetch(`${POST_API_URL}${id}`, options);
 
+  console.log(res);
   if (!res.ok) {
     throw new Error('Post 삭제에 실패했습니다.');
   }
 
-  const data = await res.json();
-  return data;
+  return res.json();
 }
 
 export { getPostById, deletePost };
