@@ -6,21 +6,16 @@ import { formatPostDate } from '@/app/_utils/dateUtils';
 import { useFetchData } from '../useFetchData';
 
 type DateWrapperProps = {
-  params: {
-    id: number;
-  };
+  date: string;
 };
 
-export default function DateWrapper({ params }: DateWrapperProps) {
-  const dateRef = useFetchData(params.id, (data) => {
-    if (dateRef.current) {
-      dateRef.current.innerText = formatPostDate(data.createdAt);
-    }
-  });
+export default function DateWrapper({ date }: DateWrapperProps) {
+  const parsedDate = new Date(date);
+  const formattedDate = formatPostDate(parsedDate);
 
   return (
     <DateBox>
-      <DateParagraph ref={dateRef as LegacyRef<HTMLParagraphElement>} />
+      <DateParagraph>{formattedDate}</DateParagraph>
     </DateBox>
   );
 }

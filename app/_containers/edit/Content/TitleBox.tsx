@@ -1,33 +1,20 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 type TitleWrapperProps = {
-  params: {
-    id: number;
-  };
+  title: string;
+  setTitle: (value: string) => void;
 };
 
-const POST_API_URL = `${process.env.NEXT_PUBLIC_FE_URL}/api/post/`;
+export default function TitleWrapper({ title, setTitle }: TitleWrapperProps) {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    console.log('Title updated:', newTitle); // 콘솔에 출력
+  };
 
-export default function TitleWrapper({ params }: TitleWrapperProps) {
-  const [title, setTitle] = useState('');
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(`${POST_API_URL}${params.id}`);
-
-      const data = await res.json();
-      setTitle(data.post.title);
-    }
-
-    fetchData();
-  }, [params.id]);
-
-  return (
-    <TitleBox defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
-  );
+  return <TitleBox defaultValue={title} onChange={handleTitleChange} />;
 }
 
 const TitleBox = styled.textarea`
