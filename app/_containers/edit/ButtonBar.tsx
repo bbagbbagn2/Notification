@@ -15,6 +15,7 @@ export default function ButtonBar({ id, title, content }: ButtonProps) {
 
   function handleCancel() {
     router.back();
+    router.refresh();
   }
 
   async function handleSave() {
@@ -23,6 +24,7 @@ export default function ButtonBar({ id, title, content }: ButtonProps) {
       console.log('Post updated successfully:', updatedPost);
 
       router.back();
+      router.refresh();
     } catch (error) {
       console.error('Error saving post:', error);
     }

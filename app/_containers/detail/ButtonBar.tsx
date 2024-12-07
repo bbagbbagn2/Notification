@@ -36,7 +36,7 @@ export default function ButtonBar({ id }: ButtonBarProps) {
       <Link href="/">
         <ButtonComponents text="목록으로" textColor={colors.text} />
       </Link>
-      <Link href={`/announcement/edit/${id}`}>
+      <Link href={`/post/edit/${id}`}>
         <ButtonComponents
           color="#ff5c00"
           textColor={colors.white}
