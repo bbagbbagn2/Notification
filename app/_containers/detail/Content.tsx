@@ -2,8 +2,8 @@
 
 import styled from 'styled-components';
 import { usePost } from './usePost';
-import colors from '@/app/_styles/theme';
 import { formatPostDate } from '@/app/_utils/dateUtils';
+import colors from '@/app/_styles/theme';
 
 type ContentProps = {
   id: number;

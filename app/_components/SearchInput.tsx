@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { IconSearch } from '@/public/svgs';
@@ -18,8 +18,6 @@ export default function SearchInput() {
     router.push(
       `/search/${query ? `?q=${encodeURIComponent(searchQuery)}` : ''}`,
     );
-
-  
   };
 
   return (

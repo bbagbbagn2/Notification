@@ -18,8 +18,8 @@ export default function EditContainer({ params }: { params: { id: number } }) {
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(`${POST_API_URL}${params.id}`);
-
       const data = await res.json();
+
       setTitle(data.post.title);
       setContent(data.post.content);
       setDate(data.post.createdAt);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getPostById } from '@/app/_services/announcement';
+import { getPostById } from '@/app/_services/post';
 import { Post } from '@prisma/client';
 
 type UsePostState = {

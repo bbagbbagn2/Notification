@@ -11,7 +11,6 @@ export default function TitleWrapper({ title, setTitle }: TitleWrapperProps) {
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newTitle = e.target.value;
     setTitle(newTitle);
-    console.log('Title updated:', newTitle); // 콘솔에 출력
   };
 
   return <TitleBox defaultValue={title} onChange={handleTitleChange} />;

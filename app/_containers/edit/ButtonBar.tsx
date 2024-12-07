@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import ButtonComponents from '@/app/_components/Button';
-import { handlePost } from '@/app/_services/announcement';
+import { handlePost } from '@/app/_services/post';
 
 interface ButtonProps {
   id: number;
@@ -21,6 +21,7 @@ export default function ButtonBar({ id, title, content }: ButtonProps) {
     try {
       const updatedPost = await handlePost(id, title, content);
       console.log('Post updated successfully:', updatedPost);
+
       router.back();
     } catch (error) {
       console.error('Error saving post:', error);

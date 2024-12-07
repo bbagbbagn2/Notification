@@ -1,9 +1,7 @@
 'use client';
 
-import React, { LegacyRef } from 'react';
 import styled from 'styled-components';
 import { formatPostDate } from '@/app/_utils/dateUtils';
-import { useFetchData } from '../useFetchData';
 
 type DateWrapperProps = {
   date: string;

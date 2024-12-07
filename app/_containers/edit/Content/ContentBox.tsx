@@ -14,7 +14,6 @@ export default function ContentWrapper({
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newContent = e.target.value;
     setContent(newContent);
-    console.log('Content updated:', newContent); // 콘솔 출력
   };
 
   return (
