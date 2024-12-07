@@ -8,7 +8,7 @@ async function fetchPosts(url: string) {
   }
   
   const data = await res.json();
-  return data
+  return data;
 }
 
 async function getPostById(id: number) {

@@ -18,7 +18,7 @@ export default function usePostData() {
   );
 
   return {
-    posts: data || null,
+    posts: data,
     error,
     isLoading: isValidating,
   };
