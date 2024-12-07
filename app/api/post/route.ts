@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/app/lib/prisma';
 
-// 게시물 전체 조회
+// 게시물 전체 조회 (GET)
 export const GET = async () => {
   try {
     const posts = await prisma.post.findMany();
@@ -16,7 +16,7 @@ export const GET = async () => {
   }
 };
 
-// 게시물 생성
+// 게시물 생성 (POST)
 export const POST = async (req: NextRequest) => {
   try {
     const { title, content } = await req.json();
