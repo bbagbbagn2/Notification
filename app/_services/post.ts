@@ -6,9 +6,8 @@ async function fetchPosts(url: string) {
   if (!res.ok) {
     throw new Error('Post 정보를 가져오는 데 실패했습니다.');
   }
-  
-  const data = await res.json();
-  return data;
+
+  return res.json();
 }
 
 async function getPostById(id: number) {

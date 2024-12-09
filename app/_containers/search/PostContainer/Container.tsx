@@ -1,20 +1,31 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import styled from 'styled-components';
-import usePostData from './usePostData';
+import useSWR from 'swr';
 import Empty from '@/app/_components/EmptyContainer';
+import { fetchPosts } from '@/app/_services/post';
 import PostList from '@/app/_components/PostList';
 
-export default function PostContainer() {
-  const { posts, isLoading } = usePostData();
+const SEARCH_API_URL = `${process.env.NEXT_PUBLIC_FE_URL}/api/post/search`;
 
-  if (!posts || posts.length === 0) {
+export default function PostContainer() {
+  const search = useSearchParams();
+  const searchQuery = search?.get('q') || '';
+  const encodedSearchQuery = encodeURI(searchQuery || '');
+
+  const { data, isLoading } = useSWR(
+    `${SEARCH_API_URL}?q=${encodedSearchQuery}`,
+    fetchPosts,
+  );
+
+  if (!data?.posts || data.posts.length === 0) {
     return <Empty />;
   }
 
   return (
     <PostContiner>
-      {posts
+      {data.posts
         .map((post: any) => <PostList post={post} key={post.id} />)
         .reverse()}
     </PostContiner>
