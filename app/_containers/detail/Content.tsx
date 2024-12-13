@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { usePost } from './usePost';
 import { formatPostDate } from '@/app/_utils/dateUtils';
 import colors from '@/app/_styles/theme';
-
+import Loading from '@/app/_components/Loading';
 type ContentProps = {
   id: number;
 };
@@ -13,7 +13,7 @@ export default function Content({ id }: ContentProps) {
   const { post, loading, error } = usePost(id);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (error) {

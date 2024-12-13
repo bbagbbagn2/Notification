@@ -1,8 +1,10 @@
+import { Suspense } from 'react';
 import prisma from '@/app/lib/prisma';
 import InnerContainer from '@/app/_components/innerContainer';
 import SearchHeader from '@/app/_components/SearchHeader';
 import PostContainer from './PostContainer';
 import PostList from '@/app/_components/PostList';
+import Loading from '@/app/_components/Loading';
 
 export default async function MainContainer() {
   const posts = await prisma.post.findMany({
@@ -13,9 +15,11 @@ export default async function MainContainer() {
     <InnerContainer>
       <SearchHeader />
       <PostContainer>
-        {posts.map((post: any) => (
-          <PostList post={post} key={post.id} />
-        ))}
+        <Suspense fallback={<Loading />}>
+          {posts.map((post: any) => (
+            <PostList post={post} key={post.id} />
+          ))}
+        </Suspense>
       </PostContainer>
     </InnerContainer>
   );
