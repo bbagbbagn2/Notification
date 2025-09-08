@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import styled from 'styled-components';
-import Logo from './Logo';
-import colors from '../_styles/theme';
+import Logo from './BrandLogo';
+import colors from '../../styles/theme';
 
 export default function Header() {
   return (
@@ -11,14 +11,8 @@ export default function Header() {
       <Container>
         <LeftContainer>
           <Logo />
-          <Link href="/">
-            <HomeText>홈</HomeText>
-          </Link>
         </LeftContainer>
         <RightContainer>
-          <Link href="/">
-            <NotificationText>공지</NotificationText>
-          </Link>
           <AlarmBox>
             <Text>알림</Text>
             <AlarmBedge />
@@ -31,7 +25,6 @@ export default function Header() {
 }
 
 const HeaderLayout = styled.header`
-  padding-inline: 20px;
   position: relative;
   width: 100%;
   height: 56px;
@@ -40,6 +33,7 @@ const HeaderLayout = styled.header`
 `;
 
 const Container = styled.div`
+  padding: 10px 80px;;
   width: 100%;
   height: 100%;
   display: flex;
@@ -55,9 +49,9 @@ const LeftContainer = styled.div`
 `;
 
 const RightContainer = styled.div`
-  width: 184px;
   display: flex;
   place-items: center;
+  gap: 16px;
   justify-content: space-between;
 `;
 
@@ -66,15 +60,6 @@ const Text = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 14px;
-`;
-
-const HomeText = styled(Text)`
-  font-size: 18px;
-  line-height: 18px;
-`;
-
-const NotificationText = styled(Text)`
-  font-weight: 600;
 `;
 
 const AlarmBox = styled.div`

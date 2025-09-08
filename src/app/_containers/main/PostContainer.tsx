@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import colors from '@/app/_styles/theme';
+import colors from '@/src/styles/theme';
 
 type PostContainerProps = {
   children: ReactNode;

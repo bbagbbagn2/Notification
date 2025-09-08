@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/app/lib/prisma';
+import prisma from '@/src/app/lib/prisma';
 
 // 제목 검색 기능 (GET)
 export const GET = async (req: NextRequest) => {

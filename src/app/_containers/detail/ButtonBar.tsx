@@ -3,9 +3,9 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import ButtonComponents from '@/app/_components/Button';
-import { deletePost } from '@/app/_services/post';
-import colors from '@/app/_styles/theme';
+import ButtonComponents from '@/src/app/_components/Button';
+import { deletePost } from '@/src/app/_services/post';
+import colors from '@/src/styles/theme';
 
 type ButtonBarProps = {
   id: number;

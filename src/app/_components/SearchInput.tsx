@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { IconSearch } from '@/public/svgs';
-import colors from '../_styles/theme';
+import colors from '../../styles/theme';
 
 export default function SearchInput() {
   const [searchQuery, setSearchQuery] = useState('');
