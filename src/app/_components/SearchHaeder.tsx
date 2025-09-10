@@ -7,7 +7,7 @@ import colors from '../../styles/theme';
 export default function SearchHeader() {
   return (
     <HeaderContainer>
-        <HeaderTitle>All docs</HeaderTitle>
+      <HeaderTitle>All docs</HeaderTitle>
       <SearchInput />
     </HeaderContainer>
   );
@@ -20,9 +20,9 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
 `;
 
-const HeaderTitle = styled.h2`
+const HeaderTitle = styled.h1`
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 100%;
   color: ${colors.text};
 `;
