@@ -1,9 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import styled from 'styled-components';
-import Logo from './BrandLogo';
-import colors from '../../styles/theme';
+import Logo from '../app/_components/BrandLogo';
+import colors from '../styles/theme';
 
 export default function Header() {
   return (
@@ -33,7 +32,7 @@ const HeaderLayout = styled.header`
 `;
 
 const Container = styled.div`
-  padding: 10px 80px;;
+  padding: 10px 80px;
   width: 100%;
   height: 100%;
   display: flex;
