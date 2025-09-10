@@ -19,7 +19,7 @@ const HeaderContainer = styled.header`
   position: relative;
   width: 100%;
   height: 56px;
-  background-color: #0D0D0D;
+  background-color: #131313;
   z-index: 90;
 `;
 
