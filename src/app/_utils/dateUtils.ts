@@ -8,17 +8,29 @@ export function formatPostDate(postDate: Date): string {
   const elapsedMilliseconds = currentDate.getTime() - date.getTime();
   const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
 
+  // 월, 년 계산
+  const yearsDiff = currentDate.getFullYear() - date.getFullYear();
+  const monthsDiff = currentDate.getMonth() - date.getMonth() + yearsDiff * 12;
+
   switch (true) {
-    case elapsedSeconds < ONE_MINUTE:
-      return '방금 전';
-    case elapsedSeconds < ONE_HOUR:
-      return `${Math.floor(elapsedSeconds / ONE_MINUTE)}분 전`;
-    case elapsedSeconds < ONE_DAY:
-      return `${Math.floor(elapsedSeconds / ONE_HOUR)}시간 전`;
-    default:
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      return `${year}. ${month}. ${day}`;
+    case elapsedSeconds < ONE_HOUR: {
+      const minutes = Math.floor(elapsedSeconds / ONE_MINUTE);
+      return `${minutes}분 전`;
+    }
+    case elapsedSeconds < ONE_DAY: {
+      const hours = Math.floor(elapsedSeconds / ONE_HOUR);
+      return `${hours}시간 전`;
+    }
+    case elapsedSeconds < ONE_DAY * 30 : {
+      const days = Math.floor(elapsedSeconds / ONE_DAY);
+      return `${days}일 전`;
+    }
+    case monthsDiff < 12 : {
+      return `${monthsDiff}개월 전`;
+    }
+    default: {
+      const years = Math.floor(monthsDiff / 12);
+      return `${years}년 전`;
+    }
   }
 }
