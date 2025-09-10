@@ -3,7 +3,6 @@
 import styled from 'styled-components';
 import NavLeftContainer from './NavLeft';
 import NavRightContainer from './NavRight';
-import colors from '../../styles/theme';
 
 export default function Header() {
   return (
@@ -20,7 +19,7 @@ const HeaderContainer = styled.header`
   position: relative;
   width: 100%;
   height: 56px;
-  background-color: ${colors.primary};
+  background-color: #0D0D0D;
   z-index: 90;
 `;
 

@@ -23,7 +23,7 @@ const NavRight = styled.div`
 `;
 
 const NavText = styled.p`
-  color: ${colors.primary300};
+  color: white;
   font-size: 14px;
   font-weight: 400;
   line-height: 14px;
@@ -39,5 +39,5 @@ const AlarmBedge = styled.div`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: ${colors.primary300};
+  background-color: #EEF279;
 `;
