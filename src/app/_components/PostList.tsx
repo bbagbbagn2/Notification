@@ -31,7 +31,7 @@ const PostListContainer = styled.div`
   padding: 20px 24px;
   background: #131313;
   margin: 20px;
-  box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.3);
+  box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2);
   border-radius: 50px;
 `;
 
