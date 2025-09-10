@@ -6,7 +6,7 @@ import colors from '../styles/theme';
 export default function PageHeader() {
   return (
     <PageHeaderContainer>
-      <PageHeaderTitle>All docs</PageHeaderTitle>
+      <PageHeaderTitle>Documents</PageHeaderTitle>
       <ButtonContainer>Add New Document</ButtonContainer>
     </PageHeaderContainer>
   );
@@ -33,6 +33,6 @@ const ButtonContainer = styled.button`
   background-color: #EAF207;
   font-size: 14px;
   color: #0D0D0D;
-  border-radius: 60px;
   border: 1px solid #EAF207;
+  border-radius: 60px;
 `;
