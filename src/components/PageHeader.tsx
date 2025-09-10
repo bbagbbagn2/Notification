@@ -2,12 +2,16 @@
 
 import styled from 'styled-components';
 import colors from '../styles/theme';
+import { FaPlus } from 'react-icons/fa6';
 
 export default function PageHeader() {
   return (
     <PageHeaderContainer>
       <PageHeaderTitle>Documents</PageHeaderTitle>
-      <ButtonContainer>Add New Document</ButtonContainer>
+      <ButtonContainer>
+        <FaPlus />
+        Add New Document
+      </ButtonContainer>
     </PageHeaderContainer>
   );
 }
@@ -30,9 +34,13 @@ const PageHeaderTitle = styled.h1`
 
 const ButtonContainer = styled.button`
   padding: 10px 16px;
-  background-color: #EAF207;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #eaf207;
   font-size: 14px;
-  color: #0D0D0D;
-  border: 1px solid #EAF207;
+  color: #0d0d0d;
+  border: 1px solid #eaf207;
   border-radius: 60px;
 `;
