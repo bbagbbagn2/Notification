@@ -1,7 +1,6 @@
 'use client';
 
 import styled from 'styled-components';
-import colors from '../styles/theme';
 import { FaPlus } from 'react-icons/fa6';
 
 export default function PageHeader() {
@@ -29,7 +28,6 @@ const PageHeaderTitle = styled.h1`
   font-size: 32px;
   font-weight: 600;
   line-height: 100%;
-  color: ${colors.text};
 `;
 
 const ButtonContainer = styled.button`
@@ -37,7 +35,7 @@ const ButtonContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 6px;
   background-color: #eaf207;
   font-size: 14px;
   color: #0d0d0d;
