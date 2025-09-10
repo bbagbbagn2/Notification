@@ -14,6 +14,12 @@ const styles = css`
     font-family: 'Pretendard', sans-serif;
   }
 
+  html,
+  body {
+    color: #fff;
+    background-color: #000;
+  }
+
   a {
     text-decoration: none;
     color: inherit;
