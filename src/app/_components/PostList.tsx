@@ -28,12 +28,11 @@ export default function PostList({ post }: PostProps) {
   );
 }
 const PostListContainer = styled.div`
-  padding: 16px 24px;
-
-  &:hover {
-    background-color: ${colors.bg200};
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
-  }
+  padding: 20px 24px;
+  background: #131313;
+  margin: 20px;
+  box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
 `;
 
 const PostListItem = styled.div`
@@ -44,17 +43,14 @@ const PostListItem = styled.div`
 `;
 
 const PostTitle = styled.p`
-  color: ${colors.text};
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 23.04px;
+  color: white;
+  font-size: 18px;
   word-wrap: break-word;
 `;
 
 const PostDate = styled.p`
-  color: ${colors.text200};
+  color: #777777;
   font-size: 14px;
-  font-weight: 400;
   line-height: 100%;
   word-wrap: break-word;
 `;
