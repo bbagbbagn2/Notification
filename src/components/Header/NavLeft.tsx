@@ -1,12 +1,12 @@
 'use client';
 
 import styled from 'styled-components';
-import Logo from '../../app/_components/BrandLogo';
+import BrandLogo from '../BrandLogo';
 
 export default function NavLeftContainer() {
   return (
     <NavLeft>
-      <Logo />
+      <BrandLogo />
     </NavLeft>
   );
 }
