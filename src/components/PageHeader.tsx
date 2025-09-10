@@ -7,7 +7,7 @@ export default function PageHeader() {
   return (
     <PageHeaderContainer>
       <PageHeaderTitle>All docs</PageHeaderTitle>
-      <ButtonContainer>Start a new document</ButtonContainer>
+      <ButtonContainer>Add New Document</ButtonContainer>
     </PageHeaderContainer>
   );
 }
@@ -29,9 +29,10 @@ const PageHeaderTitle = styled.h1`
 `;
 
 const ButtonContainer = styled.button`
-  padding: 8px 12px;
+  padding: 10px 16px;
   background-color: #EAF207;
+  font-size: 14px;
   color: #0D0D0D;
-  border-radius: 4px;
+  border-radius: 60px;
   border: 1px solid #EAF207;
 `;
