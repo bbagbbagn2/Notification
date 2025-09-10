@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import prisma from '@/src/app/lib/prisma';
 import InnerContainer from '@/src/app/_components/innerContainer';
-import PageHeader from '@/src/components/PageHeader';
+import SearchHeader from '@/src/app/_components/SearchHaeder';
 import PostContainer from './PostContainer';
 import PostList from '@/src/app/_components/PostList';
 import Loading from '@/src/app/_components/Loading';
@@ -13,7 +13,7 @@ export default async function MainContainer() {
 
   return (
     <InnerContainer>
-      <PageHeader />
+      <SearchHeader />
       <PostContainer>
         <Suspense fallback={<Loading />}>
           {posts.map((post: any) => (
