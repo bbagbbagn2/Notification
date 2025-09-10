@@ -30,8 +30,8 @@ const PageHeaderTitle = styled.h1`
 
 const ButtonContainer = styled.button`
   padding: 8px 12px;
-  background-color: ${colors.primary300};
-  color: ${colors.white};
+  background-color: #EAF207;
+  color: #0D0D0D;
   border-radius: 4px;
-  border: 1px solid ${colors.primary};
+  border: 1px solid #EAF207;
 `;

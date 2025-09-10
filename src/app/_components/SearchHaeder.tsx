@@ -22,7 +22,7 @@ const HeaderContainer = styled.div`
 
 const HeaderTitle = styled.h1`
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 100%;
   color: ${colors.text};
 `;
