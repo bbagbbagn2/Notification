@@ -2,7 +2,7 @@
 
 import StyledComponentsRegistry from './lib/registry';
 import GlobalStyles from '../styles/globalStyles';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
