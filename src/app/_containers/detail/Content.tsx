@@ -31,7 +31,7 @@ export default function Content({ id }: ContentProps) {
           {post?.createdAt ? formatPostDate(post.createdAt) : ''}
         </DateTitle>
       </DateContainer>
-      <ContentContainer>{post?.content}</ContentContainer>
+      <ContentContainer>{post?.body}</ContentContainer>
     </>
   );
 }
