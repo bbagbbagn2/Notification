@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { formatPostDate } from '@/src/app/_utils/dateUtils';
 import { Post } from '@prisma/client';
+import { FaRegTrashCan } from "react-icons/fa6";
 import colors from '../../styles/theme';
 
 type PostProps = {
@@ -19,10 +20,13 @@ export default function PostList({ post }: PostProps) {
   return (
     <PostListContainer>
       <Link href={`${POST_DETAIL_URL}${id}`} key={id}>
-        <PostListItem>
+        <PostWrapper>
+          <TitleWrapper>
           <PostTitle>{title}</PostTitle>
+          <FaRegTrashCan color='#EF4444' />
+          </TitleWrapper>
           <PostDate>{formattedDate}</PostDate>
-        </PostListItem>
+        </PostWrapper>
       </Link>
     </PostListContainer>
   );
@@ -32,16 +36,21 @@ const PostListContainer = styled.div`
   background: #131313;
   margin: 20px;
   box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
+  border-radius: 8px;
 `;
 
-const PostListItem = styled.div`
+const PostWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
   text-decoration: none;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 const PostTitle = styled.p`
   color: white;
   font-size: 18px;
