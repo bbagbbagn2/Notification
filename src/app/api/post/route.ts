@@ -19,17 +19,17 @@ export const GET = async () => {
 // 게시물 생성 (POST)
 export const POST = async (req: NextRequest) => {
   try {
-    const { title, content } = await req.json();
+    const { title, body } = await req.json();
 
-    if (!title || !content) {
+    if (!title || !body) {
       return NextResponse.json(
-        { message: 'Title and content are required' },
+        { message: 'Title and body are required' },
         { status: 400 },
       );
     }
 
     const newPost = await prisma.post.create({
-      data: { title: title, content: content },
+      data: { title: title, body: body },
     });
 
     return NextResponse.json(

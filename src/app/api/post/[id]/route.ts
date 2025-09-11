@@ -29,7 +29,7 @@ export const PUT = async (
   { params }: { params: { id: string } },
 ) => {
   try {
-    const { title, content } = await req.json();
+    const { title, body } = await req.json();
 
     const requestedId = parseInt(params.id);
 
@@ -43,7 +43,7 @@ export const PUT = async (
 
     const updatedPost = await prisma.post.update({
       where: { id: requestedId },
-      data: { title: title, content: content },
+      data: { title: title, body: body },
     });
 
     return NextResponse.json(
