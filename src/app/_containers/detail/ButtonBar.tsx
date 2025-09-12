@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import ButtonComponents from '@/src/app/_components/Button';
 import { deletePost } from '@/src/app/_services/post';
+import DeleteModal from '@/src/components/DeleteModal';
 import colors from '@/src/styles/theme';
 
 type ButtonBarProps = {
@@ -18,8 +19,9 @@ export default function ButtonBar({ id }: ButtonBarProps) {
 
   const handleModalStatus = () => {
     setModalStatus(!modalStatus);
+    console.log(modalStatus);
   };
-  
+
   async function handleDelete() {
     const shouldDelete = window.confirm('정말 삭제하시겠습니까?');
 
@@ -49,12 +51,15 @@ export default function ButtonBar({ id }: ButtonBarProps) {
           text="수정"
         />
       </Link>
+
       <ButtonComponents
         color="#ff0000"
         textColor={colors.white}
         text="삭제"
         onClick={handleModalStatus}
       />
+
+      {modalStatus && <DeleteModal setModal={handleModalStatus} />}
     </ButtonContainer>
   );
 }

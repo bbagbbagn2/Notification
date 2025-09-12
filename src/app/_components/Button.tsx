@@ -1,5 +1,6 @@
 'use client';
 
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 type ButtonProps = {
@@ -7,6 +8,7 @@ type ButtonProps = {
   onClick?: () => void;
   color?: string;
   textColor?: string;
+  children?: ReactNode;
 };
 
 export default function ButtonComponents({
@@ -14,10 +16,12 @@ export default function ButtonComponents({
   textColor,
   text,
   onClick,
+  children,
 }: ButtonProps) {
   return (
     <Button color={color} onClick={onClick}>
       <Text color={textColor}>{text}</Text>
+      {children}
     </Button>
   );
 }
