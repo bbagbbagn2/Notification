@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { useRouter } from 'next/navigation';
 import { Post } from '@prisma/client';
 import { formatPostDate } from '@/src/app/_utils/dateUtils';
 import DeleteModal from '@/src/components/DeleteModal';
+import { deletePost } from '../app/_services/post';
 import { FaRegTrashCan } from 'react-icons/fa6';
 
 type PostProps = {
@@ -18,11 +20,27 @@ export default function PostList({ post }: PostProps) {
   const [modalStatus, setModalStatus] = useState(false);
   const { id, title, createdAt } = post;
   const formattedDate = formatPostDate(createdAt);
+  const router = useRouter();
 
   const handleModalStatus = () => {
     setModalStatus(!modalStatus);
     console.log(modalStatus);
   };
+
+  async function handleDelete() {
+    try {
+      const res = await deletePost(id);
+
+      if (res.message === 'Success') {
+        router.push('/');
+        router.refresh();
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setModalStatus(false);
+    }
+  }
 
   return (
     <PostListWrapper>
@@ -43,7 +61,9 @@ export default function PostList({ post }: PostProps) {
           <PostDate>{formattedDate}</PostDate>
         </PostWrapper>
       </Link>
-      {modalStatus && <DeleteModal setModal={handleModalStatus} />}
+      {modalStatus && (
+        <DeleteModal setModal={handleModalStatus} onDelete={handleDelete} />
+      )}
     </PostListWrapper>
   );
 }
