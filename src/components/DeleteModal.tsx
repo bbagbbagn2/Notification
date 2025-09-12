@@ -24,12 +24,15 @@ export default function DeleteModal({ setModal }: ModalProps) {
     <ModalOverlay onClick={setModal}>
       <ModalWrapper onClick={prevantModalOff}>
         <MessageWrapper>
-            <ModalTitle>Delete document</ModalTitle>
-            <ModalMessage>Are you sure you want to delete this document? This action cannot be undone.</ModalMessage>
+          <ModalTitle>Delete document</ModalTitle>
+          <ModalMessage>
+            Are you sure you want to delete this document? This action cannot be
+            undone.
+          </ModalMessage>
         </MessageWrapper>
         <ButtonWrapper>
-            <CancelButton>Cancel</CancelButton>
-            <DeleteButton>Delete</DeleteButton>
+          <CancelButton onClick={setModal}>Cancel</CancelButton>
+          <DeleteButton>Delete</DeleteButton>
         </ButtonWrapper>
       </ModalWrapper>
     </ModalOverlay>
@@ -52,38 +55,36 @@ const ModalWrapper = styled.div`
   border-radius: 4px;
 `;
 
-const MessageWrapper = styled.div`
-    
-`
+const MessageWrapper = styled.div``;
 
 const ModalTitle = styled.div`
-    font-size: 18px;
-    line-height: 28px;
-    font-weight: 600;
-`
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+`;
 
 const ModalMessage = styled.div`
-    font-size: 14px;
-`
+  font-size: 14px;
+`;
 
 const ButtonWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 32px;
-`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+`;
 
 const StyledButton = styled.button`
-    padding: 10px 60px;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-`
+  padding: 10px 60px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+`;
 
 const CancelButton = styled(StyledButton)`
-    background-color: black;
-`
+  background-color: black;
+`;
 
 const DeleteButton = styled(StyledButton)`
-    background-color: #EF4444;
-`
+  background-color: #ef4444;
+`;
