@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
-import ButtonComponents from '@/app/_components/Button';
-import { handlePost } from '@/app/_services/post';
+import ButtonComponents from '@/src/app/_components/Button';
+import { handlePost } from '@/src/app/_services/post';
 
 interface ButtonProps {
   id: number;
