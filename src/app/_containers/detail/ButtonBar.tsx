@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -12,8 +13,13 @@ type ButtonBarProps = {
 };
 
 export default function ButtonBar({ id }: ButtonBarProps) {
+  const [modalStatus, setModalStatus] = useState(false);
   const router = useRouter();
 
+  const handleModalStatus = () => {
+    setModalStatus(!modalStatus);
+  };
+  
   async function handleDelete() {
     const shouldDelete = window.confirm('정말 삭제하시겠습니까?');
 
@@ -47,7 +53,7 @@ export default function ButtonBar({ id }: ButtonBarProps) {
         color="#ff0000"
         textColor={colors.white}
         text="삭제"
-        onClick={() => handleDelete()}
+        onClick={handleModalStatus}
       />
     </ButtonContainer>
   );
