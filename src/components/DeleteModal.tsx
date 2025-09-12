@@ -5,9 +5,10 @@ import styled from 'styled-components';
 
 interface ModalProps {
   setModal: () => void;
+  onDelete: () => void;
 }
 
-export default function DeleteModal({ setModal }: ModalProps) {
+export default function DeleteModal({ setModal, onDelete }: ModalProps) {
   const prevantModalOff = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
@@ -32,7 +33,7 @@ export default function DeleteModal({ setModal }: ModalProps) {
         </MessageWrapper>
         <ButtonWrapper>
           <CancelButton onClick={setModal}>Cancel</CancelButton>
-          <DeleteButton>Delete</DeleteButton>
+          <DeleteButton onClick={onDelete}>Delete</DeleteButton>
         </ButtonWrapper>
       </ModalWrapper>
     </ModalOverlay>

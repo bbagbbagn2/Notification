@@ -23,19 +23,17 @@ export default function ButtonBar({ id }: ButtonBarProps) {
   };
 
   async function handleDelete() {
-    const shouldDelete = window.confirm('정말 삭제하시겠습니까?');
+    try {
+      const res = await deletePost(id);
 
-    if (shouldDelete) {
-      try {
-        const res = await deletePost(id);
-
-        if (res.message === 'Success') {
-          router.push('/');
-          router.refresh();
-        }
-      } catch (error) {
-        console.error(error);
+      if (res.message === 'Success') {
+        router.push('/');
+        router.refresh();
       }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setModalStatus(false);
     }
   }
 
@@ -59,7 +57,9 @@ export default function ButtonBar({ id }: ButtonBarProps) {
         onClick={handleModalStatus}
       />
 
-      {modalStatus && <DeleteModal setModal={handleModalStatus} />}
+      {modalStatus && (
+        <DeleteModal setModal={handleModalStatus} onDelete={handleDelete} />
+      )}
     </ButtonContainer>
   );
 }
