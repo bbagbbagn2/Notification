@@ -79,15 +79,42 @@ const ButtonWrapper = styled.div`
 const StyledButton = styled.button`
   padding: 10px 60px;
   border-radius: 4px;
-  color: #000;
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
+  transition: background-color 0.3s ease;
 `;
 
 const CancelButton = styled(StyledButton)`
-  background-color: #fff;
+  background-color: #2a2a2a;
+
+  &:hover {
+    background-color: #1f1f1f;
+  }
+
+  &:active {
+    background-color: #161616;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #2a2a2a;
+  }
 `;
 
 const DeleteButton = styled(StyledButton)`
-  background-color: #eaf207;
+  background-color: #ef4444;
+
+  &:hover {
+    background-color: #dc2626;
+  }
+
+  &:active {
+    background-color: #b91c1c;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #ef4444;
+  }
 `;
