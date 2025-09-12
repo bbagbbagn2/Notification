@@ -31,7 +31,7 @@ const PageHeaderTitle = styled.h1`
 `;
 
 const ButtonContainer = styled.button`
-  padding: 10px 16px;
+  padding: 11px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,6 +39,19 @@ const ButtonContainer = styled.button`
   background-color: #eaf207;
   font-size: 14px;
   color: #0d0d0d;
-  border: 1px solid #eaf207;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #D6DB00;
+  }
+
+  &:active {
+    background-color: #BFC600;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(234, 242, 7, 0.6);
+  }
 `;
