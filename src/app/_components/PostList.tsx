@@ -31,14 +31,15 @@ export default function PostList({ post }: PostProps) {
         <PostWrapper>
           <TitleWrapper>
             <PostTitle>{title}</PostTitle>
-            <FaRegTrashCan
-              color="#EF4444"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleModalStatus();
-              }}
-            />
+            <DeleteWrapper>
+              <FaRegTrashCan
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleModalStatus();
+                }}
+              />
+            </DeleteWrapper>
           </TitleWrapper>
           <PostDate>{formattedDate}</PostDate>
         </PostWrapper>
@@ -78,4 +79,24 @@ const PostDate = styled.p`
   font-size: 14px;
   line-height: 100%;
   word-wrap: break-word;
+`;
+
+const DeleteWrapper = styled.div`
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #dc2626;
+  }
+
+  &:active {
+    color: #b91c1c;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #ef4444;
+  }
 `;
