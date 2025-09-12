@@ -40,5 +40,5 @@ const ButtonContainer = styled.button`
   font-size: 14px;
   color: #0d0d0d;
   border: 1px solid #eaf207;
-  border-radius: 60px;
+  border-radius: 4px;
 `;
