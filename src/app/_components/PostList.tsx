@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { formatPostDate } from '@/src/app/_utils/dateUtils';
 import { Post } from '@prisma/client';
-import { FaRegTrashCan } from "react-icons/fa6";
+import { FaRegTrashCan } from 'react-icons/fa6';
+import DeleteModal from '@/src/components/DeleteModal';
 import colors from '../../styles/theme';
 
 type PostProps = {
@@ -14,20 +16,34 @@ type PostProps = {
 const POST_DETAIL_URL = '/post/';
 
 export default function PostList({ post }: PostProps) {
+  const [modalStatus, setModalStatus] = useState(false);
   const { id, title, createdAt } = post;
   const formattedDate = formatPostDate(createdAt);
+
+  const handleModalStatus = () => {
+    setModalStatus(!modalStatus);
+    console.log(modalStatus);
+  };
 
   return (
     <PostListContainer>
       <Link href={`${POST_DETAIL_URL}${id}`} key={id}>
         <PostWrapper>
           <TitleWrapper>
-          <PostTitle>{title}</PostTitle>
-          <FaRegTrashCan color='#EF4444' />
+            <PostTitle>{title}</PostTitle>
+            <FaRegTrashCan
+              color="#EF4444"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleModalStatus();
+              }}
+            />
           </TitleWrapper>
           <PostDate>{formattedDate}</PostDate>
         </PostWrapper>
       </Link>
+      {modalStatus && <DeleteModal setModal={handleModalStatus} />}
     </PostListContainer>
   );
 }
