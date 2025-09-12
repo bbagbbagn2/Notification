@@ -3,7 +3,7 @@ import prisma from '@/src/app/lib/prisma';
 import InnerContainer from '@/src/app/_components/innerContainer';
 import PageHeader from '@/src/components/PageHeader';
 import PostContainer from './PostContainer';
-import PostList from '@/src/app/_components/PostList';
+import PostList from '@/src/components/PostList';
 import Loading from '@/src/app/_components/Loading';
 
 export default async function MainContainer() {

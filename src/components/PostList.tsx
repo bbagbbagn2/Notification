@@ -1,13 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
-import { formatPostDate } from '@/src/app/_utils/dateUtils';
+import styled from 'styled-components';
 import { Post } from '@prisma/client';
-import { FaRegTrashCan } from 'react-icons/fa6';
+import { formatPostDate } from '@/src/app/_utils/dateUtils';
 import DeleteModal from '@/src/components/DeleteModal';
-import colors from '../../styles/theme';
+import { FaRegTrashCan } from 'react-icons/fa6';
 
 type PostProps = {
   post: Post;
@@ -26,7 +25,7 @@ export default function PostList({ post }: PostProps) {
   };
 
   return (
-    <PostListContainer>
+    <PostListWrapper>
       <Link href={`${POST_DETAIL_URL}${id}`} key={id}>
         <PostWrapper>
           <TitleWrapper>
@@ -45,10 +44,10 @@ export default function PostList({ post }: PostProps) {
         </PostWrapper>
       </Link>
       {modalStatus && <DeleteModal setModal={handleModalStatus} />}
-    </PostListContainer>
+    </PostListWrapper>
   );
 }
-const PostListContainer = styled.div`
+const PostListWrapper = styled.div`
   padding: 20px 24px;
   background: #131313;
   margin: 20px;
