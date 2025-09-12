@@ -55,7 +55,9 @@ const ModalWrapper = styled.div`
   border-radius: 4px;
 `;
 
-const MessageWrapper = styled.div``;
+const MessageWrapper = styled.div`
+  margin-bottom: 32px;
+`;
 
 const ModalTitle = styled.div`
   font-size: 18px;
@@ -70,7 +72,6 @@ const ModalMessage = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 32px;
 `;
 
 const StyledButton = styled.button`
