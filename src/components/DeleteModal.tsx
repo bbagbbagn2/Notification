@@ -42,7 +42,8 @@ export default function DeleteModal({ setModal }: ModalProps) {
 const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(1px);
   display: flex;
   align-items: center;
   justify-content: center;
