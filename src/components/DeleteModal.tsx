@@ -49,7 +49,8 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  background-color: #141414;
+  background: #131313;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
   width: 400px;
   padding: 24px;
   border-radius: 4px;
@@ -67,6 +68,7 @@ const ModalTitle = styled.div`
 
 const ModalMessage = styled.div`
   font-size: 14px;
+  color: #777777;
 `;
 
 const ButtonWrapper = styled.div`
@@ -77,15 +79,15 @@ const ButtonWrapper = styled.div`
 const StyledButton = styled.button`
   padding: 10px 60px;
   border-radius: 4px;
-  color: #fff;
+  color: #000;
   font-size: 14px;
   font-weight: 600;
 `;
 
 const CancelButton = styled(StyledButton)`
-  background-color: black;
+  background-color: #fff;
 `;
 
 const DeleteButton = styled(StyledButton)`
-  background-color: #ef4444;
+  background-color: #eaf207;
 `;
