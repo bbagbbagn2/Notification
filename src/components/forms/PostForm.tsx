@@ -58,16 +58,10 @@ export function PostForm({ initialData, onSubmit, isLoading = false }: PostFormP
   const content = watch('content');
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmitHandler)}
-      className="space-y-6"
-    >
+    <form onSubmit={handleSubmit(onSubmitHandler)} className="space-y-6">
       {/* 제목 필드 */}
       <div>
-        <label
-          htmlFor="title"
-          className="block text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
           제목 *
         </label>
         <input
@@ -75,20 +69,15 @@ export function PostForm({ initialData, onSubmit, isLoading = false }: PostFormP
           type="text"
           id="title"
           placeholder="글의 제목을 입력하세요"
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
+          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           disabled={isLoaderActive}
         />
-        {errors.title && (
-          <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
-        )}
+        {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>}
       </div>
 
       {/* Slug 필드 */}
       <div>
-        <label
-          htmlFor="slug"
-          className="block text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="slug" className="block text-sm font-medium text-gray-700">
           URL Slug *
         </label>
         <input
@@ -96,26 +85,21 @@ export function PostForm({ initialData, onSubmit, isLoading = false }: PostFormP
           type="text"
           id="slug"
           placeholder="example-slug"
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
+          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           disabled={isLoaderActive}
         />
-        {errors.slug && (
-          <p className="mt-1 text-sm text-red-600">{errors.slug.message}</p>
-        )}
+        {errors.slug && <p className="mt-1 text-sm text-red-600">{errors.slug.message}</p>}
       </div>
 
       {/* 카테고리 필드 */}
       <div>
-        <label
-          htmlFor="category"
-          className="block text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="category" className="block text-sm font-medium text-gray-700">
           카테고리 *
         </label>
         <select
           {...register('category')}
           id="category"
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
+          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           disabled={isLoaderActive}
         >
           <option value="">카테고리 선택</option>
@@ -124,17 +108,12 @@ export function PostForm({ initialData, onSubmit, isLoading = false }: PostFormP
           <option value="webdev">웹 개발</option>
           <option value="other">기타</option>
         </select>
-        {errors.category && (
-          <p className="mt-1 text-sm text-red-600">{errors.category.message}</p>
-        )}
+        {errors.category && <p className="mt-1 text-sm text-red-600">{errors.category.message}</p>}
       </div>
 
       {/* 본문 필드 */}
       <div>
-        <label
-          htmlFor="content"
-          className="block text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="content" className="block text-sm font-medium text-gray-700">
           본문 *
         </label>
         <textarea
@@ -142,15 +121,11 @@ export function PostForm({ initialData, onSubmit, isLoading = false }: PostFormP
           id="content"
           rows={12}
           placeholder="마크다운 형식으로 작성할 수 있습니다"
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 font-mono text-sm text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none"
+          className="mt-1 block w-full resize-none rounded-lg border border-gray-300 px-4 py-2 font-mono text-sm text-gray-900 placeholder-gray-400 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           disabled={isLoaderActive}
         />
-        {errors.content && (
-          <p className="mt-1 text-sm text-red-600">{errors.content.message}</p>
-        )}
-        <p className="mt-1 text-xs text-gray-500">
-          {content?.length || 0} / 무제한
-        </p>
+        {errors.content && <p className="mt-1 text-sm text-red-600">{errors.content.message}</p>}
+        <p className="mt-1 text-xs text-gray-500">{content?.length || 0} / 무제한</p>
       </div>
 
       {/* 공개 여부 */}
@@ -162,10 +137,7 @@ export function PostForm({ initialData, onSubmit, isLoading = false }: PostFormP
           className="h-four w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
           disabled={isLoaderActive}
         />
-        <label
-          htmlFor="published"
-          className="text-sm text-gray-700"
-        >
+        <label htmlFor="published" className="text-sm text-gray-700">
           공개 게시
         </label>
       </div>
@@ -175,13 +147,13 @@ export function PostForm({ initialData, onSubmit, isLoading = false }: PostFormP
         <button
           type="submit"
           disabled={isLoaderActive}
-          className="flex-1 rounded-lg bg-blue-600 px-4 py-2 text-white font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="flex-1 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isLoaderActive ? '저장 중...' : '저장'}
         </button>
         <button
           type="button"
-          className="rounded-lg border border-gray-300 px-4 py-2 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+          className="rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50"
         >
           취소
         </button>

@@ -2,13 +2,7 @@
 
 import { useEffect } from 'react';
 import { useNotificationStore } from '@/lib/store';
-import {
-  AlertCircle,
-  CheckCircle,
-  AlertTriangle,
-  Info,
-  X,
-} from 'lucide-react';
+import { AlertCircle, CheckCircle, AlertTriangle, Info, X } from 'lucide-react';
 
 interface ToastProps {
   id: string;
@@ -71,30 +65,18 @@ function Toast({ id, message, type, onClose }: ToastProps) {
   return (
     <div className="animate-toast-enter">
       <div
-        className={`
-          flex items-start gap-3 rounded-lg border px-4 py-3 shadow-lg
-          ${colors.bg} ${colors.border} ${colors.text}
-          backdrop-blur-sm
-        `}
+        className={`flex items-start gap-3 rounded-lg border px-4 py-3 shadow-lg ${colors.bg} ${colors.border} ${colors.text} backdrop-blur-sm`}
       >
         {/* 아이콘 */}
-        <div className={`mt-0.5 shrink-0 ${colors.icon}`}>
-          {iconMap[type]}
-        </div>
+        <div className={`mt-0.5 shrink-0 ${colors.icon}`}>{iconMap[type]}</div>
 
         {/* 메시지 */}
-        <div className="flex-1 wrap-break-word text-sm font-medium">
-          {message}
-        </div>
+        <div className="flex-1 text-sm font-medium wrap-break-word">{message}</div>
 
         {/* 닫기 버튼 */}
         <button
           onClick={() => onClose(id)}
-          className={`
-            mt-0.5 shrink-0 p-1 rounded transition-colors
-            ${colors.icon} ${colors['제거-bg']}
-            hover:opacity-70 active:scale-95
-          `}
+          className={`mt-0.5 shrink-0 rounded p-1 transition-colors ${colors.icon} ${colors['제거-bg']} hover:opacity-70 active:scale-95`}
           aria-label="닫기"
         >
           <X className="h-4 w-4" />
@@ -106,12 +88,10 @@ function Toast({ id, message, type, onClose }: ToastProps) {
 
 export function ToastContainer() {
   const notifications = useNotificationStore((state) => state.notifications);
-  const removeNotification = useNotificationStore(
-    (state) => state.removeNotification,
-  );
+  const removeNotification = useNotificationStore((state) => state.removeNotification);
 
   return (
-    <div className="pointer-events-none fixed right-0 top-0 z-50 flex flex-col gap-3 p-4 sm:right-4 sm:top-4">
+    <div className="pointer-events-none fixed top-0 right-0 z-50 flex flex-col gap-3 p-4 sm:top-4 sm:right-4">
       {notifications.map((notification) => (
         <div key={notification.id} className="pointer-events-auto">
           <Toast

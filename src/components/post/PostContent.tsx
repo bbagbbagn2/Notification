@@ -12,10 +12,7 @@ interface PostContentProps {
 export function PostContent({ content }: PostContentProps) {
   return (
     <div className="prose">
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight]}
-      >
+      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
         {content}
       </ReactMarkdown>
     </div>

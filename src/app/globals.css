@@ -79,35 +79,35 @@ body {
 
 /* 마크다운 스타일 */
 .prose {
-  @apply max-w-none text-[var(--color-text)];
+  @apply max-w-none text-(--color-text);
 }
 
 .prose h1 {
-  @apply text-3xl font-bold text-[var(--color-text)] mt-8 mb-4 leading-tight;
+  @apply text-3xl font-bold text-(--color-text) mt-8 mb-4 leading-tight;
 }
 
 .prose h2 {
-  @apply text-2xl font-bold text-[var(--color-text)] mt-6 mb-3 leading-tight;
+  @apply text-2xl font-bold text-(--color-text) mt-6 mb-3 leading-tight;
 }
 
 .prose h3 {
-  @apply text-xl font-bold text-[var(--color-text)] mt-5 mb-2 leading-tight;
+  @apply text-xl font-bold text-(--color-text) mt-5 mb-2 leading-tight;
 }
 
 .prose h4 {
-  @apply text-lg font-semibold text-[var(--color-text)] mt-4 mb-2;
+  @apply text-lg font-semibold text-(--color-text) mt-4 mb-2;
 }
 
 .prose p {
-  @apply text-[var(--color-text-light)] leading-relaxed mb-4;
+  @apply text-(--color-text-light) leading-relaxed mb-4;
 }
 
 .prose a {
-  @apply text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] underline decoration-2 underline-offset-2 transition-colors;
+  @apply text-(--color-primary) hover:text-(--color-primary-hover) underline decoration-2 underline-offset-2 transition-colors;
 }
 
 .prose strong {
-  @apply font-semibold text-[var(--color-text)];
+  @apply font-semibold text-(--color-text);
 }
 
 .prose em {
@@ -115,11 +115,11 @@ body {
 }
 
 .prose code {
-  @apply px-1.5 py-0.5 bg-[var(--color-gray-100)] text-[var(--color-primary)] rounded text-sm font-mono;
+  @apply px-1.5 py-0.5 bg-gray-100 text-(--color-primary) rounded text-sm font-mono;
 }
 
 .prose pre {
-  @apply rounded-lg overflow-x-auto my-4 bg-[var(--color-gray-800)] p-4;
+  @apply rounded-lg overflow-x-auto my-4 bg-gray-800 p-4;
 }
 
 .prose pre code {
@@ -127,7 +127,7 @@ body {
 }
 
 .prose blockquote {
-  @apply border-l-4 border-[var(--color-primary)] pl-4 py-2 my-4 bg-[var(--color-secondary)] italic text-[var(--color-text-light)];
+  @apply border-l-4 border-(--color-primary) pl-4 py-2 my-4 bg-(--color-secondary) italic text-(--color-text-light);
 }
 
 .prose ul,
@@ -144,7 +144,7 @@ body {
 }
 
 .prose li {
-  @apply text-[var(--color-text-light)];
+  @apply text-(--color-text-light);
 }
 
 .prose img {
@@ -152,7 +152,7 @@ body {
 }
 
 .prose hr {
-  @apply my-8 border-t-2 border-[var(--color-gray-200)];
+  @apply my-8 border-t-2 border-gray-200;
 }
 
 .prose table {
@@ -161,44 +161,44 @@ body {
 
 .prose th,
 .prose td {
-  @apply border border-[var(--color-gray-300)] px-4 py-2 text-left;
+  @apply border border-gray-300 px-4 py-2 text-left;
 }
 
 .prose th {
-  @apply bg-[var(--color-secondary)] font-semibold text-[var(--color-text)];
+  @apply bg-(--color-secondary) font-semibold text-(--color-text);
 }
 
 .prose td {
-  @apply text-[var(--color-text-light)];
+  @apply text-(--color-text-light);
 }
 
 /* 커스텀 유틸리티 클래스 */
 @utility btn-primary {
-  @apply px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-hover)] transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply px-4 py-2 bg-(--color-primary) text-white rounded-lg hover:bg-(--color-primary-hover) transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 @utility btn-secondary {
-  @apply px-4 py-2 bg-[var(--color-secondary)] text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-light)] hover:text-white transition-all duration-200 font-medium;
+  @apply px-4 py-2 bg-(--color-secondary) text-(--color-primary) rounded-lg hover:bg-(--color-primary-light) hover:text-white transition-all duration-200 font-medium;
 }
 
 @utility btn-ghost {
-  @apply px-4 py-2 text-[var(--color-text-light)] hover:text-[var(--color-primary)] hover:bg-[var(--color-gray-50)] rounded-lg transition-all duration-200;
+  @apply px-4 py-2 text-(--color-text-light) hover:text-(--color-primary) hover:bg-gray-50 rounded-lg transition-all duration-200;
 }
 
 @utility card {
-  @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-[var(--color-gray-200)] overflow-hidden;
+  @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden;
 }
 
 @utility input-base {
-  @apply px-4 py-2 border border-[var(--color-gray-300)] rounded-lg focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all duration-200 bg-white;
+  @apply px-4 py-2 border border-gray-300 rounded-lg focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/20 outline-none transition-all duration-200 bg-white;
 }
 
 @utility badge {
-  @apply inline-block px-3 py-1 bg-[var(--color-secondary)] text-[var(--color-primary)] text-sm rounded-full font-medium;
+  @apply inline-block px-3 py-1 bg-(--color-secondary) text-(--color-primary) text-sm rounded-full font-medium;
 }
 
 @utility tag {
-  @apply inline-flex items-center gap-1 px-2 py-1 bg-[var(--color-gray-100)] text-[var(--color-text-light)] text-xs rounded hover:bg-[var(--color-gray-200)] transition-colors;
+  @apply inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-(--color-text-light) text-xs rounded hover:bg-gray-200 transition-colors;
 }
 
 /* 로딩 애니메이션 */

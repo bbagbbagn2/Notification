@@ -1,11 +1,7 @@
 import Link from 'next/link';
 import { Calendar, Tag, Clock, Eye, Heart } from 'lucide-react';
 import { Post } from '@/types';
-import {
-  formatDate,
-  calculateReadingTime,
-  getFirstSentence,
-} from '@/lib/utils';
+import { formatDate, calculateReadingTime, getFirstSentence } from '@/lib/utils';
 
 interface PostCardProps {
   post: Post;
@@ -17,29 +13,20 @@ export function PostCard({ post }: PostCardProps) {
 
   return (
     <Link href={`/posts/${post.slug}`}>
-      <article className="card p-6 h-full flex flex-col gap-3 items-start justify-between hover:border-(--color-primary) transition-all duration-200 cursor-pointer animate-fade-in">
-        {/* Category Badge */}
+      <article className="card animate-fade-in flex h-full cursor-pointer flex-col items-start justify-between gap-3 p-6 transition-all duration-200 hover:border-(--color-primary)">
         {post.category && <span className="badge">{post.category}</span>}
-
-        {/* Title */}
-        <h2 className="text-xl font-bold text-(--color-text) line-clamp-2 hover:text-(--color-primary) transition-colors">
+        <h2 className="line-clamp-2 text-xl font-bold text-(--color-text) transition-colors hover:text-(--color-primary)">
           {post.title}
         </h2>
-
-        {/* Excerpt */}
         {post.excerpt && (
-          <p className="text-(--color-text-light) leading-relaxed">
+          <p className="leading-relaxed text-(--color-text-light)">
             {getFirstSentence(previewExcerpt)}
           </p>
         )}
-
-        {/* Meta Info */}
-        <div className="flex items-center gap-4 text-sm text-gray-500 flex-wrap">
+        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
           <div className="flex items-center gap-1">
             <Calendar size={16} />
-            <time dateTime={post.created_at}>
-              {formatDate(post.created_at, 'short')}
-            </time>
+            <time dateTime={post.created_at}>{formatDate(post.created_at, 'short')}</time>
           </div>
           <div className="flex items-center gap-1">
             <Clock size={16} />
@@ -50,8 +37,6 @@ export function PostCard({ post }: PostCardProps) {
             <span>{post.views} views</span>
           </div>
         </div>
-
-        {/* Tags */}
         {post.tags && post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {post.tags.slice(0, 3).map((tag) => (
@@ -61,9 +46,7 @@ export function PostCard({ post }: PostCardProps) {
               </span>
             ))}
             {post.tags.length > 3 && (
-              <span className="text-xs text-gray-400">
-                +{post.tags.length - 3}
-              </span>
+              <span className="text-xs text-gray-400">+{post.tags.length - 3}</span>
             )}
           </div>
         )}

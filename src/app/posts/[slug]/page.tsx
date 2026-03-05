@@ -53,9 +53,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: PostDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PostDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
 
@@ -92,34 +90,32 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
   const isUpdated = post.updated_at !== post.created_at;
 
   return (
-    <div className="min-h-screen bg-background">
-      <article className="max-w-4xl mx-auto px-4 py-12">
+    <div className="bg-background min-h-screen">
+      <article className="mx-auto max-w-4xl px-4 py-12">
         {/* Back Button */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-text-light hover:text-primary mb-8 transition-colors"
+          className="text-text-light hover:text-primary mb-8 inline-flex items-center gap-2 transition-colors"
         >
           <ArrowLeft size={20} />
           <span>목록으로</span>
         </Link>
 
         {/* Header */}
-        <header className="mb-8 pb-8 border-b-2 border-gray-200">
+        <header className="mb-8 border-b-2 border-gray-200 pb-8">
           {/* Category */}
           {post.category && <span className="badge mb-4">{post.category}</span>}
 
           {/* Title */}
-          <h1 className="text-3xl md:text-5xl font-bold text-text mb-6 leading-tight">
+          <h1 className="text-text mb-6 text-3xl leading-tight font-bold md:text-5xl">
             {post.title}
           </h1>
 
           {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
+          <div className="mb-4 flex flex-wrap items-center gap-4 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <Calendar size={16} />
-              <time dateTime={post.created_at}>
-                {formatDate(post.created_at)}
-              </time>
+              <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
             </div>
 
             <span className="text-gray-300">•</span>
@@ -132,9 +128,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
             {isUpdated && (
               <>
                 <span className="hidden text-gray-300 md:block">•</span>
-                <span className="text-gray-400">
-                  {getRelativeTime(post.updated_at)} 수정됨
-                </span>
+                <span className="text-gray-400">{getRelativeTime(post.updated_at)} 수정됨</span>
               </>
             )}
           </div>
@@ -145,7 +139,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
               {post.tags.map((tag) => (
                 <div
                   key={tag}
-                  className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-text-light text-sm rounded-full"
+                  className="text-text-light inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-sm"
                 >
                   <Tag size={14} />
                   {tag}
@@ -156,7 +150,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
         </header>
 
         {/* Content */}
-        <div className="bg-white rounded-lg p-8 md:p-12 shadow-sm border border-gray-200 mb-12">
+        <div className="mb-12 rounded-lg border border-gray-200 bg-white p-8 shadow-sm md:p-12">
           <PostContent content={post.content} />
         </div>
 
@@ -164,11 +158,8 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
         <PostEngagement post={post} />
 
         {/* Actions */}
-        <div className="flex justify-end items-center pt-8 border-t-2 border-gray-200">
-          <Link
-            href={`/edit/${post.id}`}
-            className="btn-secondary inline-flex items-center gap-2"
-          >
+        <div className="flex items-center justify-end border-t-2 border-gray-200 pt-8">
+          <Link href={`/edit/${post.id}`} className="btn-secondary inline-flex items-center gap-2">
             <Edit size={18} />
             수정
           </Link>

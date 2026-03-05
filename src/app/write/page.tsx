@@ -96,10 +96,7 @@ export default function WritePage() {
     if (!confirm('이 임시저장을 삭제하시겠습니까?')) return;
 
     try {
-      const { error } = await supabase
-        .from('drafts')
-        .delete()
-        .eq('id', draftId);
+      const { error } = await supabase.from('drafts').delete().eq('id', draftId);
 
       if (error) throw error;
       loadDrafts();
@@ -170,31 +167,22 @@ export default function WritePage() {
 
   return (
     <main className="min-h-screen bg-(--color-background)">
-      <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="mx-auto max-w-5xl px-4 py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              className="text-(--color-text-light) hover:text-(--color-primary)"
-            >
+            <Link href="/" className="text-(--color-text-light) hover:text-(--color-primary)">
               <ArrowLeft size={24} />
             </Link>
-            <h1 className="text-2xl font-bold text-(--color-text)">
-              글 작성
-            </h1>
+            <h1 className="text-2xl font-bold text-(--color-text)">글 작성</h1>
           </div>
-          <div className="flex items-center gap-3 flex-wrap justify-end">
+          <div className="flex flex-wrap items-center justify-end gap-3">
             {lastSaved && (
               <span className="text-sm text-gray-500">
                 마지막 저장: {lastSaved.toLocaleTimeString()}
               </span>
             )}
-            <Button
-              variant="secondary"
-              onClick={handleOpenDrafts}
-              icon={<FolderOpen size={18} />}
-            >
+            <Button variant="secondary" onClick={handleOpenDrafts} icon={<FolderOpen size={18} />}>
               임시저장 목록
             </Button>
           </div>
@@ -202,26 +190,22 @@ export default function WritePage() {
 
         {/* Draft Modal */}
         {showDrafts && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-4 max-w-4xl w-full max-h-[80vh] overflow-y-auto mx-3 md:mx-4">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold text-text">임시저장 목록</h2>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="mx-3 max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-4 md:mx-4">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-text text-xl font-bold">임시저장 목록</h2>
                 <button
                   onClick={() => setShowDrafts(false)}
-                  className="text-gray-500 hover:text-text"
+                  className="hover:text-text text-gray-500"
                 >
                   <X size={24} />
                 </button>
               </div>
 
               {loadingDrafts ? (
-                <div className="text-center py-8 text-gray-500">
-                  불러오는 중...
-                </div>
+                <div className="py-8 text-center text-gray-500">불러오는 중...</div>
               ) : drafts.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
-                  임시저장된 글이 없습니다.
-                </div>
+                <div className="py-8 text-center text-gray-500">임시저장된 글이 없습니다.</div>
               ) : (
                 <div className="space-y-3">
                   {drafts.map((draft) => {
@@ -235,37 +219,31 @@ export default function WritePage() {
                     return (
                       <div
                         key={draft.id}
-                        className="border border-gray-200 rounded-lg p-4 hover:border-(--color-primary) transition-colors"
+                        className="rounded-lg border border-gray-200 p-4 transition-colors hover:border-(--color-primary)"
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div
                             className="flex-1 cursor-pointer"
                             onClick={() => handleLoadDraft(draft)}
                           >
-                            <h3 className="font-bold text-lg mb-1 text-(--color-text)">
+                            <h3 className="mb-1 text-lg font-bold text-(--color-text)">
                               {parsedData.title || '제목 없음'}
                             </h3>
-                            <p className="text-sm text-(--color-text-light) mb-2 line-clamp-2">
+                            <p className="mb-2 line-clamp-2 text-sm text-(--color-text-light)">
                               {parsedData.content?.slice(0, 100) || '내용 없음'}
                             </p>
                             <div className="flex items-center gap-2 text-xs text-gray-500">
                               <Clock size={14} />
-                              <span>
-                                {new Date(draft.created_at).toLocaleString(
-                                  'ko-KR',
-                                )}
-                              </span>
+                              <span>{new Date(draft.created_at).toLocaleString('ko-KR')}</span>
                               {parsedData.category && (
-                                <span className="badge text-xs">
-                                  {parsedData.category}
-                                </span>
+                                <span className="badge text-xs">{parsedData.category}</span>
                               )}
                             </div>
                           </div>
                           <div className="flex gap-2">
                             <button
                               onClick={() => handleLoadDraft(draft)}
-                              className="px-3 py-1.5 bg-(--color-primary) text-white text-sm rounded-lg hover:bg-(--color-primary-hover) transition-colors"
+                              className="rounded-lg bg-(--color-primary) px-3 py-1.5 text-sm text-white transition-colors hover:bg-(--color-primary-hover)"
                             >
                               불러오기
                             </button>
@@ -274,7 +252,7 @@ export default function WritePage() {
                                 e.stopPropagation();
                                 handleDeleteDraft(draft.id);
                               }}
-                              className="px-3 py-1.5 bg-red-100 text-red-600 text-sm rounded-lg hover:bg-red-200 transition-colors"
+                              className="rounded-lg bg-red-100 px-3 py-1.5 text-sm text-red-600 transition-colors hover:bg-red-200"
                             >
                               삭제
                             </button>
@@ -296,10 +274,8 @@ export default function WritePage() {
             type="text"
             placeholder="제목을 입력하세요"
             value={formData.title}
-            onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
-            }
-            className="w-full px-4 py-3 text-2xl font-bold border-b-2 border-gray-200 focus:border-(--color-primary) outline-none bg-transparent transition-colors"
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            className="w-full border-b-2 border-gray-200 bg-transparent px-4 py-3 text-2xl font-bold transition-colors outline-none focus:border-(--color-primary)"
           />
 
           {/* Category */}
@@ -307,15 +283,13 @@ export default function WritePage() {
             type="text"
             placeholder="카테고리 (예: TIL, 회고)"
             value={formData.category}
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
             className="input-base w-full md:w-1/2"
           />
 
           {/* Tags */}
           <div>
-            <div className="flex gap-2 mb-2">
+            <div className="mb-2 flex gap-2">
               <input
                 type="text"
                 placeholder="태그 입력 후 엔터"
@@ -337,12 +311,12 @@ export default function WritePage() {
               {formData.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 px-3 py-1 bg-(--color-secondary) text-(--color-primary) rounded-full font-medium"
+                  className="inline-flex items-center gap-1 rounded-full bg-(--color-secondary) px-3 py-1 font-medium text-(--color-primary)"
                 >
                   {tag}
                   <button
                     onClick={() => handleRemoveTag(tag)}
-                    className="hover:text-red-500 transition-colors"
+                    className="transition-colors hover:text-red-500"
                   >
                     <X size={14} />
                   </button>
@@ -354,18 +328,16 @@ export default function WritePage() {
           {/* Markdown Editor */}
           <div
             data-color-mode="light"
-            className="border border-gray-200 rounded-lg overflow-hidden"
+            className="overflow-hidden rounded-lg border border-gray-200"
           >
             <MDEditor
               value={formData.content}
-              onChange={(val) =>
-                setFormData({ ...formData, content: val || '' })
-              }
+              onChange={(val) => setFormData({ ...formData, content: val || '' })}
               height={500}
               preview="live"
             />
           </div>
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex flex-wrap items-center gap-3">
             <Button
               variant="secondary"
               onClick={handleSaveDraft}

@@ -17,10 +17,10 @@ export function CategoryFilter({ categories }: CategoryFilterProps) {
       <Link
         href="/"
         className={cn(
-          'px-4 py-2 rounded-full transition-all duration-200 font-medium',
+          'rounded-full px-4 py-2 font-medium transition-all duration-200',
           !currentCategory
             ? 'bg-(--color-primary) text-white shadow-md'
-            : 'bg-white text-(--color-text-light) hover:bg-gray-50 border border-gray-200',
+            : 'border border-gray-200 bg-white text-(--color-text-light) hover:bg-gray-50'
         )}
       >
         전체
@@ -30,10 +30,10 @@ export function CategoryFilter({ categories }: CategoryFilterProps) {
           key={category}
           href={`/?category=${category}`}
           className={cn(
-            'px-4 py-2 rounded-full transition-all duration-200 font-medium',
+            'rounded-full px-4 py-2 font-medium transition-all duration-200',
             currentCategory === category
               ? 'bg-(--color-primary) text-white shadow-md'
-              : 'bg-white text-(--color-text-light) hover:bg-gray-50 border border-gray-200',
+              : 'border border-gray-200 bg-white text-(--color-text-light) hover:bg-gray-50'
           )}
         >
           {category}

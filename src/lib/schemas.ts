@@ -6,17 +6,11 @@ import { z } from 'zod';
 
 // Zod 스키마 정의
 export const postSchema = z.object({
-  title: z
-    .string()
-    .min(1, '제목을 입력해주세요')
-    .max(200, '제목은 200자 이하여야 합니다'),
+  title: z.string().min(1, '제목을 입력해주세요').max(200, '제목은 200자 이하여야 합니다'),
   slug: z
     .string()
     .min(1, 'Slug을 입력해주세요')
-    .regex(
-      /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
-      'Slug은 영문, 숫자, 하이픈만 사용 가능합니다',
-    ),
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug은 영문, 숫자, 하이픈만 사용 가능합니다'),
   content: z.string().min(1, '본문을 입력해주세요'),
   excerpt: z.string().optional(),
   category: z.string().min(1, '카테고리를 선택해주세요'),
@@ -55,3 +49,12 @@ export interface PaginatedResponse<T> {
   pageSize: number;
   totalPages: number;
 }
+
+// 로그인 스키마
+export const authSchema = z.object({
+  email: z.string().email('유효한 이메일을 입력하세요.'),
+  password: z.string().min(6, '비밀번호는 6자 이상이어야 합니다.'),
+});
+
+// 로그인 폼 데이터 타입
+export type AuthFormData = z.infer<typeof authSchema>;
