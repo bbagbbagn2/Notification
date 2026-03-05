@@ -80,8 +80,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <PostList
           posts={posts}
           emptyMessage={
-            searchParams.category
-              ? `"${searchParams.category}" 카테고리에 글이 없습니다.`
+            categoryParam
+              ? `"${categoryParam}" 카테고리에 글이 없습니다.`
               : '아직 작성된 글이 없습니다.'
           }
         />
@@ -114,10 +114,10 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   href={`/posts/${post.slug}`}
                   className="bg-white p-6 rounded-lg hover:shadow-md transition-shadow border border-gray-200"
                 >
-                  <h3 className="font-bold text-lg text-[var(--color-text)] mb-2 line-clamp-2">
+                  <h3 className="font-bold text-lg text-(--color-text) mb-2 line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-[var(--color-text-light)] line-clamp-3">
+                  <p className="text-sm text-(--color-text-light) line-clamp-3">
                     {post.excerpt}
                   </p>
                 </Link>

@@ -1,3 +1,5 @@
+'use client';
+
 import { Github, Mail } from 'lucide-react';
 
 export function Footer() {

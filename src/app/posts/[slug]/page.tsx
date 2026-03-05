@@ -4,9 +4,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Calendar, Tag, Edit, ArrowLeft, Clock } from 'lucide-react';
 import { PostContent } from '@/components/post/PostContent';
+import { PostEngagement } from '@/components/post/PostEngagement';
 import { supabase } from '@/lib/supabase';
 import { formatDate, calculateReadingTime, getRelativeTime } from '@/lib/utils';
 import { Post } from '@/types';
+
+// ISR 설정: 1시간마다 재검증
+export const revalidate = 3600;
 
 interface PostDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -28,6 +32,25 @@ async function getPost(slug: string): Promise<Post | null> {
   }
 
   return data;
+}
+
+// 인기 글 50개를 미리 정적 생성
+export async function generateStaticParams() {
+  const { data: posts, error } = await supabase
+    .from('posts')
+    .select('slug')
+    .eq('published', true)
+    .order('created_at', { ascending: false })
+    .limit(50);
+
+  if (error || !posts) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 export async function generateMetadata({
@@ -136,6 +159,9 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
         <div className="bg-white rounded-lg p-8 md:p-12 shadow-sm border border-gray-200 mb-12">
           <PostContent content={post.content} />
         </div>
+
+        {/* Engagement Section */}
+        <PostEngagement post={post} />
 
         {/* Actions */}
         <div className="flex justify-end items-center pt-8 border-t-2 border-gray-200">

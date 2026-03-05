@@ -19,8 +19,8 @@ export function CategoryFilter({ categories }: CategoryFilterProps) {
         className={cn(
           'px-4 py-2 rounded-full transition-all duration-200 font-medium',
           !currentCategory
-            ? 'bg-[var(--color-primary)] text-white shadow-md'
-            : 'bg-white text-[var(--color-text-light)] hover:bg-[var(--color-gray-50)] border border-[var(--color-gray-200)]',
+            ? 'bg-(--color-primary) text-white shadow-md'
+            : 'bg-white text-(--color-text-light) hover:bg-gray-50 border border-gray-200',
         )}
       >
         전체
@@ -32,8 +32,8 @@ export function CategoryFilter({ categories }: CategoryFilterProps) {
           className={cn(
             'px-4 py-2 rounded-full transition-all duration-200 font-medium',
             currentCategory === category
-              ? 'bg-[var(--color-primary)] text-white shadow-md'
-              : 'bg-white text-[var(--color-text-light)] hover:bg-[var(--color-gray-50)] border border-[var(--color-gray-200)]',
+              ? 'bg-(--color-primary) text-white shadow-md'
+              : 'bg-white text-(--color-text-light) hover:bg-gray-50 border border-gray-200',
           )}
         >
           {category}

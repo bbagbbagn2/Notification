@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Calendar, Tag, Clock } from 'lucide-react';
+import { Calendar, Tag, Clock, Eye, Heart } from 'lucide-react';
 import { Post } from '@/types';
 import {
   formatDate,
@@ -17,24 +17,24 @@ export function PostCard({ post }: PostCardProps) {
 
   return (
     <Link href={`/posts/${post.slug}`}>
-      <article className="card p-6 h-full flex flex-col gap-3 items-start justify-between hover:border-[var(--color-primary)] transition-all duration-200 cursor-pointer animate-fade-in">
+      <article className="card p-6 h-full flex flex-col gap-3 items-start justify-between hover:border-(--color-primary) transition-all duration-200 cursor-pointer animate-fade-in">
         {/* Category Badge */}
         {post.category && <span className="badge">{post.category}</span>}
 
         {/* Title */}
-        <h2 className="text-xl font-bold text-[var(--color-text)] line-clamp-2 hover:text-[var(--color-primary)] transition-colors">
+        <h2 className="text-xl font-bold text-(--color-text) line-clamp-2 hover:text-(--color-primary) transition-colors">
           {post.title}
         </h2>
 
         {/* Excerpt */}
         {post.excerpt && (
-          <p className="text-[var(--color-text-light)] leading-relaxed">
+          <p className="text-(--color-text-light) leading-relaxed">
             {getFirstSentence(previewExcerpt)}
           </p>
         )}
 
         {/* Meta Info */}
-        <div className="flex items-center gap-4 text-sm text-[var(--color-gray-500)]">
+        <div className="flex items-center gap-4 text-sm text-gray-500 flex-wrap">
           <div className="flex items-center gap-1">
             <Calendar size={16} />
             <time dateTime={post.created_at}>
@@ -44,6 +44,10 @@ export function PostCard({ post }: PostCardProps) {
           <div className="flex items-center gap-1">
             <Clock size={16} />
             <span>{readingTime}분</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Eye size={16} />
+            <span>{post.views} views</span>
           </div>
         </div>
 
@@ -57,7 +61,7 @@ export function PostCard({ post }: PostCardProps) {
               </span>
             ))}
             {post.tags.length > 3 && (
-              <span className="text-xs text-[var(--color-gray-400)]">
+              <span className="text-xs text-gray-400">
                 +{post.tags.length - 3}
               </span>
             )}

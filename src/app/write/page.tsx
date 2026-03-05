@@ -169,24 +169,24 @@ export default function WritePage() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--color-background)]">
+    <main className="min-h-screen bg-(--color-background)">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="text-[var(--color-text-light)] hover:text-[var(--color-primary)]"
+              className="text-(--color-text-light) hover:text-(--color-primary)"
             >
               <ArrowLeft size={24} />
             </Link>
-            <h1 className="text-2xl font-bold text-[var(--color-text)]">
+            <h1 className="text-2xl font-bold text-(--color-text)">
               글 작성
             </h1>
           </div>
           <div className="flex items-center gap-3 flex-wrap justify-end">
             {lastSaved && (
-              <span className="text-sm text-[var(--color-gray-500)]">
+              <span className="text-sm text-gray-500">
                 마지막 저장: {lastSaved.toLocaleTimeString()}
               </span>
             )}
@@ -215,11 +215,11 @@ export default function WritePage() {
               </div>
 
               {loadingDrafts ? (
-                <div className="text-center py-8 text-[var(--color-gray-500)]">
+                <div className="text-center py-8 text-gray-500">
                   불러오는 중...
                 </div>
               ) : drafts.length === 0 ? (
-                <div className="text-center py-8 text-[var(--color-gray-500)]">
+                <div className="text-center py-8 text-gray-500">
                   임시저장된 글이 없습니다.
                 </div>
               ) : (
@@ -235,20 +235,20 @@ export default function WritePage() {
                     return (
                       <div
                         key={draft.id}
-                        className="border border-[var(--color-gray-200)] rounded-lg p-4 hover:border-[var(--color-primary)] transition-colors"
+                        className="border border-gray-200 rounded-lg p-4 hover:border-(--color-primary) transition-colors"
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div
                             className="flex-1 cursor-pointer"
                             onClick={() => handleLoadDraft(draft)}
                           >
-                            <h3 className="font-bold text-lg mb-1 text-[var(--color-text)]">
+                            <h3 className="font-bold text-lg mb-1 text-(--color-text)">
                               {parsedData.title || '제목 없음'}
                             </h3>
-                            <p className="text-sm text-[var(--color-text-light)] mb-2 line-clamp-2">
+                            <p className="text-sm text-(--color-text-light) mb-2 line-clamp-2">
                               {parsedData.content?.slice(0, 100) || '내용 없음'}
                             </p>
-                            <div className="flex items-center gap-2 text-xs text-[var(--color-gray-500)]">
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
                               <Clock size={14} />
                               <span>
                                 {new Date(draft.created_at).toLocaleString(
@@ -265,7 +265,7 @@ export default function WritePage() {
                           <div className="flex gap-2">
                             <button
                               onClick={() => handleLoadDraft(draft)}
-                              className="px-3 py-1.5 bg-[var(--color-primary)] text-white text-sm rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors"
+                              className="px-3 py-1.5 bg-(--color-primary) text-white text-sm rounded-lg hover:bg-(--color-primary-hover) transition-colors"
                             >
                               불러오기
                             </button>
@@ -299,7 +299,7 @@ export default function WritePage() {
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
-            className="w-full px-4 py-3 text-2xl font-bold border-b-2 border-[var(--color-gray-200)] focus:border-[var(--color-primary)] outline-none bg-transparent transition-colors"
+            className="w-full px-4 py-3 text-2xl font-bold border-b-2 border-gray-200 focus:border-(--color-primary) outline-none bg-transparent transition-colors"
           />
 
           {/* Category */}
@@ -337,7 +337,7 @@ export default function WritePage() {
               {formData.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 px-3 py-1 bg-[var(--color-secondary)] text-[var(--color-primary)] rounded-full font-medium"
+                  className="inline-flex items-center gap-1 px-3 py-1 bg-(--color-secondary) text-(--color-primary) rounded-full font-medium"
                 >
                   {tag}
                   <button
@@ -354,7 +354,7 @@ export default function WritePage() {
           {/* Markdown Editor */}
           <div
             data-color-mode="light"
-            className="border border-[var(--color-gray-200)] rounded-lg overflow-hidden"
+            className="border border-gray-200 rounded-lg overflow-hidden"
           >
             <MDEditor
               value={formData.content}

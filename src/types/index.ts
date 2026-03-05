@@ -12,6 +12,19 @@ export interface Post {
   created_at: string;
   updated_at: string;
   author_id?: string;
+  views?: number; // 조회수 (Supabase 스키마 설정 후 필수)
+}
+
+export interface Like {
+  id: string;
+  post_id: string;
+  user_id: string;
+  created_at: string;
+}
+
+export interface PostWithEngagement extends Post {
+  likes_count: number;
+  is_liked_by_user?: boolean; // 현재 사용자가 좋아요 눌렀는지
 }
 
 export interface Draft {

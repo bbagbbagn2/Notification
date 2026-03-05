@@ -24,15 +24,15 @@ export default async function PostsPage() {
   const posts = await getPosts();
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)]">
+    <div className="min-h-screen bg-(--color-background)">
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[var(--color-text)] mb-2">
+          <h1 className="text-4xl font-bold text-(--color-text) mb-2">
             전체 글
           </h1>
 
-          <p className="text-[var(--color-text-light)]">
+          <p className="text-(--color-text-light)">
             총 {posts.length}개의 글
           </p>
         </div>

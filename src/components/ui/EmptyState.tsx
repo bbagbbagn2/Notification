@@ -22,8 +22,8 @@ export function EmptyState({ type = 'posts', message }: EmptyStateProps) {
 
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
-      <Icon size={64} className="text-[var(--color-gray-400)] mb-4" />
-      <p className="text-lg text-[var(--color-text-light)]">
+      <Icon size={64} className="text-gray-400 mb-4" />
+      <p className="text-lg text-(--color-text-light)">
         {message || messages[type]}
       </p>
     </div>
